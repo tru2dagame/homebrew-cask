@@ -1,9 +1,9 @@
 cask "xquartz" do
-  version "2.7.11"
-  sha256 "32e50e8f1e21542b847041711039fa78d44febfed466f834a9281c44d75cd6c3"
+  version "2.8.2"
+  sha256 "f270dac14cf355026268d2a5a00d903c5102b69e0d2db2a7e47142f7eb76e025"
 
-  url "https://dl.bintray.com/xquartz/downloads/XQuartz-#{version}.dmg",
-      verified: "bintray.com/xquartz/"
+  url "https://github.com/XQuartz/XQuartz/releases/download/XQuartz-#{version}/XQuartz-#{version}.dmg",
+      verified: "github.com/XQuartz/XQuartz/"
   name "XQuartz"
   desc "Open-source version of the X.Org X Window System"
   homepage "https://www.xquartz.org/"
@@ -19,29 +19,20 @@ cask "xquartz" do
 
   pkg "XQuartz.pkg"
 
-  uninstall quit:      "org.macosforge.xquartz.X11",
-            launchctl: [
-              "org.macosforge.xquartz.startx",
-              "org.macosforge.xquartz.privileged_startx",
-            ],
-            pkgutil:   "org.macosforge.xquartz.pkg",
-            delete:    [
-              "/opt/X11",
-              "/private/etc/manpaths.d/40-XQuartz",
-              "/private/etc/paths.d/40-XQuartz",
-            ]
+  uninstall launchctl: "org.xquartz.privileged_startx",
+            pkgutil:   "org.xquartz.X11"
 
   zap trash: [
-    "~/.Xauthority",
-    "~/Library/Application Support/XQuartz",
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.macosforge.xquartz.x11.sfl*",
-    "~/Library/Caches/org.macosforge.xquartz.X11",
-    "~/Library/Cookies/org.macosforge.xquartz.X11.binarycookies",
-    "~/Library/Logs/X11/org.macosforge.xquartz.log",
-    "~/Library/Logs/X11/org.macosforge.xquartz.log.old",
-    "~/Library/Preferences/org.macosforge.xquartz.X11.plist",
-    "~/Library/Saved Application State/org.macosforge.xquartz.X11.savedState",
-  ],
+        "~/.Xauthority",
+        "~/Library/Application Support/XQuartz",
+        "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.xquartz.x11.sfl*",
+        "~/Library/Caches/org.xquartz.X11",
+        "~/Library/Cookies/org.xquartz.X11.binarycookies",
+        "~/Library/Logs/X11/org.xquartz.log",
+        "~/Library/Logs/X11/org.xquartz.log.old",
+        "~/Library/Preferences/org.xquartz.X11.plist",
+        "~/Library/Saved Application State/org.xquartz.X11.savedState",
+      ],
       rmdir: [
         "~/.fonts",
         "~/Library/Logs/X11",

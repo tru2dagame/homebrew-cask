@@ -1,11 +1,17 @@
 cask "dcp-o-matic-player" do
-  version "2.14.47"
-  sha256 "41f67135e04e48d9a530093bcec274410d02e27f1b7ce86b0ea8b289b8ac214f"
+  version "2.16.18"
+  sha256 "68d62091cc4bb47c13e3f063218fe961438bd18e139e543773fc3cc157397532"
 
-  url "https://dcpomatic.com/dl.php?id=osx-10.9-player&version=#{version}"
-  appcast "https://dcpomatic.com/download"
+  url "https://dcpomatic.com/dl.php?id=osx-10.10-player&version=#{version}"
   name "DCP-o-matic Player"
+  desc "Play Digital Cinema Packages"
   homepage "https://dcpomatic.com/"
 
+  livecheck do
+    cask "dcp-o-matic"
+  end
+
   app "DCP-o-matic #{version.major} Player.app"
+
+  # No zap stanza required
 end

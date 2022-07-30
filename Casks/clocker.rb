@@ -1,21 +1,12 @@
 cask "clocker" do
-  version "20.10.03,5613815"
-  sha256 "27692bbfafb74d0c9f85a7e7bfae53708831900e59eb9ac35681dbebf4bce3c4"
+  version "22.06"
+  sha256 "683ab58e3d4636a5200c3a31982185abe02adedc60fc07ddc7dfd30db8a5acba"
 
-  url "https://github.com/n0shake/Clocker/files/#{version.after_comma}/Clocker.app.zip",
+  url "https://github.com/n0shake/Clocker/releases/download/#{version}/Clocker.zip",
       verified: "github.com/n0shake/Clocker/"
   name "Clocker"
-  desc "Track timezones from your menubar"
+  desc "Menu bar timezone tracker and compact calendar"
   homepage "https://abhishekbanthia.com/clocker"
-
-  livecheck do
-    url "https://github.com/n0shake/Clocker/releases/latest"
-    strategy :page_match do |page|
-      v = page[%r{href=.*?/tag/(\d+(?:\.\d+)*)}i, 1]
-      id = page[%r{href=.*?/(\d+)/Clocker\.app\.zip}i, 1]
-      "#{v},#{id}"
-    end
-  end
 
   app "Clocker.app"
 

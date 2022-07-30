@@ -1,12 +1,15 @@
 cask "tastyworks" do
-  version "1.12.0"
-  sha256 "0d799bb36a82954a970087052eb092172edf6e5b79d0d6868db14d30bd3df12a"
+  version "1.22.0"
+  sha256 "e7e56d8aed91594c6259f47fffb0326c3ca7bda2eb0ad2a10c487d819b11ee26"
 
   url "https://download.tastyworks.com/desktop-#{version.major}.x.x/#{version}/tastyworks-#{version}.dmg"
-  appcast "https://tastyworks.freshdesk.com/support/solutions/articles/43000435186-recent-release-notes",
-          must_contain: version.major_minor
   name "tastyworks"
+  desc "Desktop trading platform for the tastyworks brokerage"
   homepage "https://tastyworks.com/"
+
+  livecheck do
+    skip "No version information available"
+  end
 
   auto_updates true
 

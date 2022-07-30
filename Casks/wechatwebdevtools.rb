@@ -1,21 +1,34 @@
 cask "wechatwebdevtools" do
-  version "1.03.2011120"
-  sha256 "bd2627896368362452cc7293a545ff5fc5cedcaad141d5492a6907c8889f7049"
+  arch = Hardware::CPU.intel? ? "x64" : "arm64"
 
-  url "https://dldir1.qq.com/WechatWebDev/release/p-ae42ee2cde4d42ee80ac60b35f183a99/wechat_devtools_#{version}.dmg"
-  appcast "https://developers.weixin.qq.com/miniprogram/dev/devtools/stable.html"
-  name "wechat web devtools"
-  name "微信web开发者工具"
-  homepage "https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html"
+  version "1.06.2207210"
+
+  if Hardware::CPU.intel?
+    sha256 "891ec7a5bf011b03e025d09f94b3c59f735d5fe8b29f980cc63b7754fe8c728c"
+  else
+    sha256 "e5def38681471079646a31897a0d9b6b0b07fc2145ffeadc134e79c80c2a9885"
+  end
+
+  url "https://dldir1.qq.com/WechatWebDev/release/be1ec64cf6184b0fa64091919793f068/wechat_devtools_#{version}_darwin_#{arch}.dmg"
+  name "Wechat DevTools"
+  name "微信开发者工具"
+  desc "Wechat DevTools for Official Account and Mini Program development"
+  homepage "https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html"
+
+  livecheck do
+    url "https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html"
+    regex(%r{Stable\s+Build</a>\s*\((\d+(?:\.\d+)+)}i)
+  end
 
   auto_updates true
 
   app "wechatwebdevtools.app"
 
   zap trash: [
-    "~/Library/Application Support/微信web开发者工具",
-    "~/Library/Caches/微信web开发者工具",
+    "~/Library/Application Support/微信开发者工具",
+    "~/Library/Caches/微信开发者工具",
     "~/Library/Preferences/com.tencent.wechat.devtools.plist",
+    "~/Library/Preferences/com.tencent.webplusdevtools.plist",
     "~/Library/Saved Application State/com.tencent.wechat.devtools.savedState",
   ]
 end

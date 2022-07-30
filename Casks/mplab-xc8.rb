@@ -1,14 +1,15 @@
 cask "mplab-xc8" do
-  version "2.31"
-  sha256 "8e7b6dc163cc65df92598cec77129b7e762f8d0f835424a44157e16780dade0f"
+  version "2.40"
+  sha256 "5889b2fe70738deb5476707a8ab5af7a73362f0a0c5a6b92634ac3c19c5f9a8c"
 
-  url "https://ww1.microchip.com/downloads/en/DeviceDoc/xc8-v#{version}-full-install-macos-x64-installer.dmg"
+  url "https://ww1.microchip.com/downloads/aemDocuments/documents/DEV/ProductDocuments/SoftwareTools/xc8-v#{version}-full-install-macos-x64-installer.dmg"
   name "MPLab XC8 Compiler"
+  desc "Compiler for 8-bit PIC and SAM MCUs and MPUs"
   homepage "https://www.microchip.com/mplab/compilers"
 
   livecheck do
-    url "https://www.microchip.com/mplabxc8osx"
-    strategy :header_match
+    url "https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers/downloads-documentation"
+    regex(%r{href=.*?ProductDocuments/SoftwareTools/xc8[._-]v?(\d+(?:\.\d+)+)-full-install-macos-x64-installer\.dmg}i)
   end
 
   installer script: {

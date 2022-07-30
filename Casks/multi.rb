@@ -1,12 +1,18 @@
 cask "multi" do
-  version "2.1.0"
-  sha256 "6b22e67312ba2f2c3c1c9095cc698cad45b1e51f8564aca3a61826a4779262d7"
+  version "2.2.0"
+  sha256 "8df3d55b420e777cf919f1a27682ca9f2c93bb6b68ba33aa7e85453e94a2eb69"
 
   url "https://github.com/hkgumbs/multi/releases/download/v#{version}/Multi.#{version}.dmg"
-  appcast "https://github.com/hkgumbs/multi/releases.atom"
   name "Multi"
   desc "Create apps from groups of websites"
   homepage "https://github.com/hkgumbs/multi"
 
   app "Multi.app"
+
+  zap trash: [
+    "~/Library/Caches/llc.gumbs.multi.*",
+    "~/Library/Caches/llc.gumbs.multi",
+    "~/Library/Preferences/llc.gumbs.multi.*.plist",
+    "~/Library/Saved Application State/llc.gumbs.multi.savedState",
+  ]
 end

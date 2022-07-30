@@ -1,15 +1,26 @@
 cask "ipvanish-vpn" do
-  version "3.2.1,57174"
-  sha256 "ee3eb71fdf2624a13eb6dada48ba3ab03ebb4ab9b95e2b5c658f9ad37beda5fe"
+  version "3.3.0,67479"
+  sha256 :no_check
 
-  url "https://www.ipvanish.com/software/osx/IPVanish_v#{version.before_comma}_b#{version.after_comma}.zip"
+  url "https://s3.amazonaws.com/ipvanish-apps/software/osx/IPVanish.dmg",
+      verified: "s3.amazonaws.com/ipvanish-apps/software/osx/"
   name "IPVanish"
+  desc "VPN client"
   homepage "https://www.ipvanish.com/"
 
   livecheck do
-    url "https://www.ipvanish.com/software/osx/updates.xml"
-    strategy :sparkle
+    url :url
+    strategy :extract_plist
   end
 
+  depends_on macos: ">= :high_sierra"
+
   app "IPVanish VPN.app"
+
+  zap trash: [
+    "~/Library/Application Support/com.ipvanish.IPVanish",
+    "~/Library/Caches/com.ipvanish.IPVanish",
+    "~/Library/Logs/IPVanish VPN",
+    "~/Library/Preferences/com.ipvanish.IPVanish.plist",
+  ]
 end

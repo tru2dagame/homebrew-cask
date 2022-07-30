@@ -1,15 +1,26 @@
 cask "cryptomator" do
-  version "1.5.11"
-  sha256 "3570ae02917c91fc0d2a0a2a42a41aa5b0dcf00ae91e481a6d9ded4ee24ebf6f"
+  arch = Hardware::CPU.intel? ? "" : "-arm64"
 
-  url "https://dl.bintray.com/cryptomator/cryptomator/#{version}/Cryptomator-#{version}.dmg",
-      verified: "dl.bintray.com/cryptomator/cryptomator/"
-  appcast "https://github.com/cryptomator/cryptomator/releases.atom"
+  version "1.6.11"
+
+  if Hardware::CPU.intel?
+    sha256 "9bb5ef5630a971c849d2471fdf6deebf14e182d1670a9eed588fb5632492fffb"
+  else
+    sha256 "efdfdea5eb8dd56b15e472c985c2e8a696f8a21fa1fd2794438baf586db8bce8"
+  end
+
+  url "https://github.com/cryptomator/cryptomator/releases/download/#{version}/Cryptomator-#{version}#{arch}.dmg",
+      verified: "github.com/cryptomator/cryptomator/"
   name "Cryptomator"
   desc "Multi-platform client-side cloud file encryption tool"
   homepage "https://cryptomator.org/"
 
-  depends_on macos: ">= :yosemite"
+  livecheck do
+    url "https://cryptomator.org/downloads/mac/thanks/"
+    regex(%r{href=.*?/Cryptomator[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
+  end
+
+  depends_on macos: ">= :high_sierra"
 
   app "Cryptomator.app"
 

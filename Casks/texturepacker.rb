@@ -1,9 +1,10 @@
 cask "texturepacker" do
-  version "5.4.0"
-  sha256 "7055bed6c6ee278143431755d1dd9026611e4d9aba396b74de10cb09c270e108"
+  version "6.0.2"
+  sha256 "cc80d7d2760cb73acc6e335c45cff52f1f88f6f707fd903d152eea059603ae16"
 
-  url "https://www.codeandweb.com/download/texturepacker/#{version}/TexturePacker-#{version}-uni.dmg"
+  url "https://www.codeandweb.com/download/texturepacker/#{version}/TexturePacker-#{version}.dmg"
   name "TexturePacker"
+  desc "Game sprite sheet packer"
   homepage "https://www.codeandweb.com/texturepacker"
 
   livecheck do

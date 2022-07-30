@@ -1,11 +1,16 @@
 cask "historyhound" do
-  version "2.3.1"
-  sha256 "bdd7ddf16fc6e32225279a6b426e1692f698aa8fb9017a9b9328eb95efaac0b8"
+  version "2.3.3,9012"
+  sha256 "02cb0df03d19442355e57df27f36a9dba2be02d7b02059b7ddd608c31f741a38"
 
-  url "https://www.stclairsoft.com/download/HistoryHound-#{version}.dmg"
-  appcast "https://www.stclairsoft.com/cgi-bin/sparkle.cgi?HH"
+  url "https://www.stclairsoft.com/download/HistoryHound-#{version.csv.first}.dmg"
   name "HistoryHound"
+  desc "Browser history and bookmarks keyword search"
   homepage "https://www.stclairsoft.com/HistoryHound/"
+
+  livecheck do
+    url "https://www.stclairsoft.com/cgi-bin/sparkle.cgi?HH"
+    strategy :sparkle
+  end
 
   auto_updates true
 

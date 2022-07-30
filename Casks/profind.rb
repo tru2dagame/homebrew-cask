@@ -1,9 +1,10 @@
 cask "profind" do
-  version "1.8.9,1817"
-  sha256 "39d94a8dd273312e05af12afbf328ff6cbd95f8511c6291a7833df80e240b59d"
+  version "1.14.0,11402"
+  sha256 "d84d0729b7197e3b8ecd79d276df46843a48cf59d71a3ef30db7dbc9ac8f8cb8"
 
-  url "https://www.zeroonetwenty.com/profind/downloads/ProFind#{version.before_comma.no_dots}.dmg"
+  url "https://www.zeroonetwenty.com/profind/downloads/ProFind#{version.csv.first.no_dots}.dmg"
   name "ProFind"
+  desc "File search app"
   homepage "https://www.zeroonetwenty.com/profind/"
 
   livecheck do
@@ -14,4 +15,12 @@ cask "profind" do
   depends_on macos: ">= :high_sierra"
 
   app "ProFind.app"
+
+  zap trash: [
+    "~/Library/Application Scripts/com.zeroonetwenty.ProFind",
+    "~/Library/Application Support/com.zeroonetwenty.ProFind",
+    "~/Library/Caches/com.zeroonetwenty.ProFind",
+    "~/Library/Preferences/com.zeroonetwenty.ProFind.plist",
+    "~/Library/Saved Application State/com.zeroonetwenty.ProFind.savedState",
+  ]
 end

@@ -1,15 +1,22 @@
 cask "vlc" do
-  version "3.0.11.1"
-  sha256 "021212d2f6e6701ec3b254d56dfa5c5f848c9c02813c5750c6944a8458de8fb5"
+  arch = Hardware::CPU.intel? ? "intel64" : "arm64"
 
-  url "https://get.videolan.org/vlc/#{version}/macosx/vlc-#{version}.dmg"
+  version "3.0.17.3"
+
+  if Hardware::CPU.intel?
+    sha256 "cca267f2c51ae568e02f3b4d8a6adba87b2bde5f011a2b87c595c102d89f11d8"
+  else
+    sha256 "cdee78a660c88758cbaa3424948dfbdb7c969824be1becfcbbe2aef725655200"
+  end
+
+  url "https://download.videolan.org/vlc/#{version}/macosx/vlc-#{version}-#{arch}.dmg"
   name "VLC media player"
-  desc "Open-source cross-platform multimedia player"
+  desc "Multimedia player"
   homepage "https://www.videolan.org/vlc/"
 
   livecheck do
-    url "https://update.videolan.org/vlc/sparkle/vlc-intel64.xml"
-    strategy :sparkle
+    url "https://www.videolan.org/vlc/download-macosx.html"
+    regex(%r{href=.*?/vlc[._-]v?(\d+(?:\.\d+)+)(?:[._-][a-z]\w*)?\.dmg}i)
   end
 
   auto_updates true
@@ -21,7 +28,7 @@ cask "vlc" do
   binary shimscript, target: "vlc"
 
   preflight do
-    IO.write shimscript, <<~EOS
+    File.write shimscript, <<~EOS
       #!/bin/sh
       exec '#{appdir}/VLC.app/Contents/MacOS/VLC' "$@"
     EOS

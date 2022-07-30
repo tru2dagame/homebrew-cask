@@ -1,8 +1,8 @@
 cask "soulver" do
-  version "3.4.13,165"
-  sha256 "e7272829e493a5e0d13c2dce2aeb63ae0c5f4e04248cd2d83debe53488e9ecce"
+  version "3.5.9.1,299"
+  sha256 "bcdb96d1c52a11aaca1c2f029fd2d2b414d680304ecd38f78d0165c21fc92d4b"
 
-  url "https://soulver.app/mac/sparkle/soulver-#{version.before_comma}-#{version.after_comma}.zip"
+  url "https://soulver.app/mac/sparkle/soulver-#{version.csv.first}-#{version.csv.second}.zip"
   name "Soulver"
   desc "Notepad with a built-in calculator"
   homepage "https://soulver.app/"
@@ -18,15 +18,15 @@ cask "soulver" do
   app "Soulver #{version.major}.app"
 
   zap trash: [
-    "~/Library/Application Support/Soulver 3",
+    "~/Library/Application Scripts/app.soulver.mac.QuicklookInSpotlight",
     "~/Library/Application Support/app.soulver.mac",
-    "~/Library/Preferences/app.soulver.mac.plist",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/app.soulver.mac.sfl2",
+    "~/Library/Application Support/Soulver #{version.major}",
     "~/Library/Caches/app.soulver.mac",
     "~/Library/Containers/app.soulver.mac.QuicklookInSpotlight",
     "~/Library/Group Containers/group.app.soulver",
     "~/Library/HTTPStorages/app.soulver.mac.binarycookies",
-    "~/Library/Application Scripts/app.soulver.mac.QuicklookInSpotlight",
+    "~/Library/Preferences/app.soulver.mac.plist",
     "~/Library/Saved Application State/app.soulver.mac.savedState",
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/app.soulver.mac.sfl2",
   ]
 end

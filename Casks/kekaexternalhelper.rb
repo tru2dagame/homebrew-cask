@@ -1,18 +1,20 @@
 cask "kekaexternalhelper" do
-  version "1.2.6,1.1.0"
-  sha256 "4e232df4d93ee4bff300feb91bf62f5c18880355f3c79dbe43b3e3f710461d21"
+  version "1.1.2,1.2.50"
+  sha256 "4fb629045b9d887a6adb3280e791ff8ac7843b40b475bb88ece5c25c6cd5d70f"
 
-  url "https://github.com/aonez/Keka/releases/download/v#{version.before_comma}/KekaExternalHelper-v#{version.after_comma}.zip"
+  url "https://github.com/aonez/Keka/releases/download/v#{version.csv.second}/KekaExternalHelper-v#{version.csv.first}.zip"
   name "Keka External Helper"
+  name "KekaDefaultApp"
   desc "Helper application for the Keka file archiver"
   homepage "https://github.com/aonez/Keka/wiki/Default-application"
 
-  # Not all releases contain the external helper, so we have to check all of them.
   livecheck do
-    url "https://github.com/aonez/Keka/releases"
+    url "https://www.keka.io/en/"
     strategy :page_match do |page|
       match = page.match(%r{href=.*?/v?(\d+(?:\.\d+)*)/KekaExternalHelper-v?(\d+(?:\.\d+)*)\.zip}i)
-      "#{match[1]},#{match[2]}"
+      next if match.blank?
+
+      "#{match[2]},#{match[1]}"
     end
   end
 

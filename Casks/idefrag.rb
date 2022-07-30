@@ -12,7 +12,12 @@ cask "idefrag" do
   desc "Disk optimizer and defragmentation tool"
   homepage "https://coriolis-systems.com/iDefrag/"
 
-  depends_on macos: ">= :yosemite"
+  depends_on macos: "<= :high_sierra"
 
   app "iDefrag.app"
+
+  caveats do
+    discontinued
+    free_license "https://coriolis-systems.com/downloads/iDefrag.png"
+  end
 end

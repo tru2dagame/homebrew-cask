@@ -1,9 +1,8 @@
 cask "openkey" do
-  version "2.0.3"
-  sha256 "e6313d301e88cd286c5f2de986ac0e72a6f7dc7312c2412e56f3eb5633c965ad"
+  version "2.0.5"
+  sha256 "0551e0b73f2aff1c75098124f348ea871b8a7233f8c407875ceb69d7b8f84b1c"
 
   url "https://github.com/tuyenvm/OpenKey/releases/download/#{version}/OpenKey#{version}.dmg"
-  appcast "https://github.com/tuyenvm/OpenKey/releases.atom"
   name "OpenKey"
   desc "Vietnamese input system"
   homepage "https://github.com/tuyenvm/OpenKey/"

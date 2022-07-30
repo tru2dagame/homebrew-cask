@@ -1,9 +1,10 @@
 cask "protopie" do
-  version "5.2.0"
-  sha256 "2cabe38670799533438419f40b1d7595aa48c566407e623cde59bdf2a43508b6"
+  version "7.1.0"
+  sha256 "68376e4c939360b1cef32408918fb0704e47a6f3ad6fb20d2dabe1079416ac52"
 
   url "https://release.protopie.io/ProtoPie-#{version}.dmg"
   name "ProtoPie"
+  desc "Create interactive prototypes"
   homepage "https://www.protopie.io/"
 
   livecheck do
@@ -14,4 +15,10 @@ cask "protopie" do
   auto_updates true
 
   app "ProtoPie.app"
+
+  zap trash: [
+    "~/Library/Application Support/ProtoPie",
+    "~/Library/Preferences/io.protopie.plist",
+    "~/Library/Saved Application State/io.protopie.savedState",
+  ]
 end

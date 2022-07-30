@@ -1,10 +1,12 @@
 cask "bunch" do
-  version "1.3.0,51"
-  sha256 "d8ab5bda171d5cceaff6b80336b9fe8c708fca68d779075c4ad6f7235dfecb1c"
+  version "1.4.8,143"
+  sha256 "d2d2779139b9524c2762aa0d40aceb4a20857ee78a2b887bba15cc4b44e20f40"
 
-  url "https://cdn3.brettterpstra.com/updates/bunch/Bunch#{version.before_comma}#{version.after_comma}.dmg"
+  url "https://brettterpstra.com/updates/bunch/Bunch#{version.csv.first}#{version.csv.second}.dmg",
+      verified: "brettterpstra.com/updates/bunch/"
   name "Bunch"
-  homepage "https://brettterpstra.com/projects/bunch/"
+  desc "Automation tool"
+  homepage "https://bunchapp.co/"
 
   livecheck do
     url "https://brettterpstra.com/updates/bunch/appcast.xml"
@@ -12,6 +14,7 @@ cask "bunch" do
   end
 
   auto_updates true
+  depends_on macos: ">= :sierra"
 
   app "Bunch.app"
 

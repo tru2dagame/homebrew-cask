@@ -1,14 +1,18 @@
 cask "smartsvn" do
-  version "14.0.3"
-  sha256 "c38ddac8526a00ea297eb05bde20849e879867047e4833d7dc37c67ce0a3602a"
+  version "14.2.1"
+  sha256 "65be0f560c929e4ba747bb09778ea4ad6b104477d81c226459909905846df0c0"
 
-  url "https://www.smartsvn.com/downloads/smartsvn/smartsvn-macosx-#{version.dots_to_underscores}.dmg"
-  appcast "https://www.smartsvn.com/documents/smartsvn/changelog.txt"
+  url "https://www.smartsvn.com/downloads/smartsvn/smartsvn-x86_64-#{version.dots_to_underscores}.dmg"
   name "SmartSVN"
   desc "Subversion client"
   homepage "https://www.smartsvn.com/"
 
-  depends_on macos: ">= :el_capitan"
+  livecheck do
+    url "https://www.smartsvn.com/documents/smartsvn/changelog.txt"
+    regex(/SmartSVN\s+v?(\d+(?:\.\d+)+)/i)
+  end
+
+  depends_on macos: ">= :high_sierra"
 
   app "SmartSVN.app"
 

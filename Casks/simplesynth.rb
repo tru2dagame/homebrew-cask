@@ -4,9 +4,9 @@ cask "simplesynth" do
 
   url "https://notahat.s3.amazonaws.com/SimpleSynth-#{version}.zip",
       verified: "notahat.s3.amazonaws.com/"
-  appcast "https://notahat.com/simplesynth/"
   name "SimpleSynth"
-  homepage "https://notahat.com/simplesynth/"
+  desc "Small and fast synth"
+  homepage "https://github.com/notahat/simplesynth"
 
   app "SimpleSynth.app"
 end

@@ -1,6 +1,6 @@
 cask "0-ad" do
-  version "0.0.23b-alpha"
-  sha256 "5fae1331bb1778bf16e49460fb850270b6cd76bee6483078ff27582e71ab263f"
+  version "0.0.25b-alpha"
+  sha256 "d1a2073dee3435d8a78bf289206248c9ed6be5e17f4ba1ac8412caf6d0eae0b0"
 
   url "https://releases.wildfiregames.com/0ad-#{version}-osx64.dmg",
       verified: "releases.wildfiregames.com/"
@@ -13,5 +13,9 @@ cask "0-ad" do
     regex(/href=.*?0ad[._-]v?(.*?)-osx64\.dmg/i)
   end
 
-  app "0 A.D.app"
+  depends_on macos: ">= :sierra"
+
+  app "0 A.D..app"
+
+  zap trash: "~/Library/Saved Application State/com.wildfiregames.0ad.savedState"
 end

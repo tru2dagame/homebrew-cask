@@ -1,15 +1,18 @@
 cask "darktable" do
-  version "3.4.0"
-  sha256 "da72476993160d1cb2ff8e40c6bd402f1032884936a9eb818197c936d4b22a14"
+  version "4.0.0"
+  sha256 "addab784af18bafa303340e754c00084c126e61c3d5b93006f8e6d602f838203"
 
   url "https://github.com/darktable-org/darktable/releases/download/release-#{version.major_minor_patch}/darktable-#{version}.dmg",
       verified: "github.com/darktable-org/darktable/"
-  appcast "https://github.com/darktable-org/darktable/releases.atom"
   name "darktable"
   desc "Photography workflow application and raw developer"
   homepage "https://www.darktable.org/"
 
-  conflicts_with cask: "darktable-dev"
+  livecheck do
+    url :url
+    strategy :github_latest
+    regex(/href=.*?darktable[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
+  end
 
   app "darktable.app"
 end

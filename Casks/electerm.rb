@@ -1,12 +1,28 @@
 cask "electerm" do
-  version "1.10.39"
-  sha256 "045a2e718f31df6ac12b3607c29b39c2a6a07aa2ec2bbafa4b2b3eb672bd65c8"
+  arch = Hardware::CPU.intel? ? "x64" : "arm64"
 
-  url "https://github.com/electerm/electerm/releases/download/v#{version}/electerm-#{version}-mac.dmg"
-  appcast "https://github.com/electerm/electerm/releases.atom"
+  version "1.22.20"
+
+  if Hardware::CPU.intel?
+    sha256 "8f9fe558ea8d9b0c64b752636c8bf5873c9f7d1db78c863b58a8f1e5a7f5dd97"
+  else
+    sha256 "d88ba7b4cff431373abee6600f27075797fcd29ce4053735da315d6ac01d44c1"
+  end
+
+  url "https://github.com/electerm/electerm/releases/download/v#{version}/electerm-#{version}-mac-#{arch}.dmg"
   name "electerm"
-  desc "Terminal/ssh/serial port/sftp client"
+  desc "Terminal/ssh/sftp client"
   homepage "https://github.com/electerm/electerm/"
 
+  auto_updates true
+
   app "electerm.app"
+  binary "#{appdir}/electerm.app/Contents/MacOS/electerm"
+
+  zap trash: [
+    "~/Library/Application Support/electerm",
+    "~/Library/Logs/electerm",
+    "~/Library/Preferences/org.electerm.electerm.plist",
+    "~/Library/Saved Application State/org.electerm.electerm.savedState",
+  ]
 end

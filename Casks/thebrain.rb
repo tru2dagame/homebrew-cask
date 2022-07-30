@@ -1,15 +1,18 @@
 cask "thebrain" do
-  version "11.0.132.0"
-  sha256 "a92e40a9f8f766ec514df4d85d0fd3bc799169f2e56267113c60a24fdb246305"
+  version "12.0.93.0"
+  sha256 "c75a1c043c00ea6765765f81194281995372385e5b4b912945df9ca21cc2e3ea"
 
   url "https://updater.thebrain.com/files/TheBrain#{version}.dmg"
   name "TheBrain"
+  desc "Mind mapping and personal knowledge base software"
   homepage "https://www.thebrain.com/"
 
   livecheck do
-    url "https://salesapi.thebrain.com/?a=doDirectDownload&id=11000"
+    url "https://salesapi.thebrain.com/?a=doDirectDownload&id=12000"
     strategy :header_match
   end
+
+  depends_on macos: ">= :mojave"
 
   app "TheBrain #{version.major}.app"
 end

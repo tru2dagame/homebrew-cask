@@ -1,12 +1,17 @@
 cask "colour-contrast-analyser" do
-  version "3.1.2"
-  sha256 "fbc56bf2d07fc6500fa28c30b292b058a3f360c5bad55da3262bb40452100294"
+  version "3.2.0"
+  sha256 "2afd22cc174957561d6271810455a7394a9f6ed418c22914ca750ec66849840f"
 
   url "https://github.com/ThePacielloGroup/CCAe/releases/download/v#{version}/CCA-#{version}.dmg",
       verified: "github.com/ThePacielloGroup/CCAe/"
-  appcast "https://github.com/ThePacielloGroup/CCAe/releases.atom"
-  name "Colour Contrast Analyser (CCA)"
-  homepage "https://developer.paciellogroup.com/resources/contrastanalyser/"
+  name "Colour Contrast Analyser"
+  desc "Color contrast checker"
+  homepage "https://www.tpgi.com/color-contrast-checker/"
 
-  app "Colour Contrast Analyser (CCA).app"
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  app "Colour Contrast Analyser.app"
 end

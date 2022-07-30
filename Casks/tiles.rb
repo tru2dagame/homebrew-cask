@@ -1,13 +1,19 @@
 cask "tiles" do
-  version "1.1.1,15113647"
-  sha256 "83a523f5d180e20d9b9d35c5544678a06fde202ea6407ff725847fda021fc9bc"
+  version "1.3.0,6c7491b2"
+  sha256 "c88ec00075f9c0504f793ec354be9752c700717deefe2164a67d6daeb90ff48d"
 
-  url "https://updates.sempliva.com/tiles/Tiles-#{version.after_comma}.dmg"
-  appcast "https://updates.sempliva.com/tiles/updates.xml",
-          must_contain: version.after_comma
+  url "https://updates.sempliva.com/tiles/Tiles-#{version.csv.second}.dmg"
   name "Sempliva Tiles"
   desc "Window manager"
   homepage "https://www.sempliva.com/tiles/"
+
+  livecheck do
+    url "https://updates.sempliva.com/tiles/updates.xml"
+    strategy :sparkle do |item|
+      id = item.url[/Tiles[._-](\h+)\.dmg/i, 1]
+      "#{item.short_version},#{id}"
+    end
+  end
 
   auto_updates true
   depends_on macos: ">= :el_capitan"

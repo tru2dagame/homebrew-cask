@@ -1,13 +1,19 @@
 cask "seadrive" do
-  version "2.0.10"
-  sha256 "d9f54d78111c2e8dfd7e82a10c9b07bcd0317bceddb2b79e6a76973321cfb029"
+  version "2.0.22"
+  sha256 "d42ff60925ce8ded9ae7d7c07e88c21f4702828f5cb0b438c5a40ac1f8f1b904"
 
   url "https://download.seadrive.org/seadrive-#{version}.dmg",
       verified: "download.seadrive.org/"
-  appcast "https://www.seafile.com/en/download/"
   name "Seadrive"
   desc "Manual for Seafile server"
   homepage "https://www.seafile.com/en/home/"
 
-  app "Seadrive.app"
+  livecheck do
+    url "https://www.seafile.com/en/download/"
+    regex(%r{href=.*?/seadrive[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
+  end
+
+  depends_on macos: ">= :high_sierra"
+
+  app "SeaDrive.app"
 end

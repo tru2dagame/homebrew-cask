@@ -1,8 +1,8 @@
 cask "mmhmm" do
-  version "1.1.0,1608528000"
-  sha256 "e03fd50041e9c77de58bb0c9fbccca47d4ca7c76e3b4644e9037c336c62e7a68"
+  version "2.3.2,1657772000"
+  sha256 "6406870a1cc08046c0e69220b37f390f535c32b7041d3544ac37a6127a5fd734"
 
-  url "https://updates.mmhmm.app/mac/production/mmhmm_#{version.before_comma}.zip"
+  url "https://updates.mmhmm.app/mac/production/mmhmm_#{version.csv.first}.zip"
   name "mmhmm"
   desc "Virtual video presentation software"
   homepage "https://www.mmhmm.app/"
@@ -12,6 +12,7 @@ cask "mmhmm" do
     strategy :sparkle
   end
 
+  auto_updates true
   depends_on macos: ">= :mojave"
 
   app "mmhmm.app"

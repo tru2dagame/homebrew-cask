@@ -1,14 +1,18 @@
 cask "obs-websocket" do
-  version "4.8.0"
-  sha256 "8147a14fd8a6b17a9ea1921d3ab743cc4aac430dcc893d0cdb466ae428a28ef6"
+  version "5.0.0"
+  sha256 "f7cb0dfc2a9cfa2cdd9793ec28ee9fdab79d6a4fe339a95a2a602133bc5cd6ad"
 
-  url "https://github.com/Palakis/obs-websocket/releases/download/#{version}/obs-websocket-#{version}-macOS.pkg"
-  appcast "https://github.com/Palakis/obs-websocket/releases.atom"
+  url "https://github.com/obsproject/obs-websocket/releases/download/#{version}/obs-websocket-#{version}-macOS.pkg"
   name "obs-websocket"
   desc "Remote-control OBS Studio through WebSockets"
-  homepage "https://github.com/Palakis/obs-websocket"
+  homepage "https://github.com/obsproject/obs-websocket"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   pkg "obs-websocket-#{version}-macOS.pkg"
 
-  uninstall pkgutil: "fr.palakis.obs-websocket"
+  uninstall pkgutil: "com.obsproject.obs-websocket"
 end

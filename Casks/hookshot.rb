@@ -1,25 +1,29 @@
 cask "hookshot" do
-  version "1.16.1,30"
-  sha256 "0164ea25bc2e87ae65fa20f42b8bc7369dd10d3666e22e587c8b205d43519fdb"
+  version "1.24,55"
+  sha256 "90ca5f61de4912f7958bd690e424fa3e962e69459ca0a796a7737da712984b4b"
 
-  url "https://hookshot.app/downloads/Hookshot#{version.before_comma}.dmg"
+  url "https://hookshot.app/downloads/Hookshot#{version.csv.first}.dmg"
   name "Hookshot"
+  desc "Window snapping tool"
   homepage "https://hookshot.app/"
-
-  livecheck do
-    url "https://hookshot.app/downloads/updates.xml"
-    strategy :sparkle
-  end
 
   auto_updates true
   depends_on macos: ">= :sierra"
 
   app "Hookshot.app"
 
+  uninstall quit: "com.knollsoft.Hookshot"
+
   zap trash: [
     "~/Library/Application Support/Hookshot",
     "~/Library/Caches/com.knollsoft.Hookshot",
     "~/Library/Cookies/com.knollsoft.Hookshot.binarycookies",
-    "/Library/Preferences/com.knollsoft.Hookshot.plist",
+    "~/Library/HTTPStorages/com.knollsoft.Hookshot",
+    "~/Library/HTTPStorages/com.knollsoft.Hookshot.binarycookies",
+    "~/Library/Preferences/com.knollsoft.Hookshot.plist",
   ]
+
+  caveats do
+    discontinued
+  end
 end

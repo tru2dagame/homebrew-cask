@@ -1,10 +1,9 @@
 cask "kactus" do
-  version "0.3.32"
-  sha256 "beb91b62c02ae1850a645b7d339b2a03850d0d7ae226ef3688a5e0185fe76c0b"
+  version "0.3.35"
+  sha256 "e264d004747c21e5332202c1f1337dddeb1f42d6a6c7fe00c3753031ea87b745"
 
   url "https://github.com/kactus-io/kactus/releases/download/v#{version}/Kactus-macos.zip",
       verified: "github.com/kactus-io/kactus/"
-  appcast "https://github.com/kactus-io/kactus/releases.atom"
   name "Kactus"
   desc "True version control tool for designers"
   homepage "https://kactus.io/"

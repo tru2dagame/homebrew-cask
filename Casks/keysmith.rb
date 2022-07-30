@@ -1,8 +1,8 @@
 cask "keysmith" do
-  version "1.9.1,77"
-  sha256 "91fc01ed9dc8d5ab777f49ade10d5bdc5b44f57b7fd5a14cbd01ad8e7aaac88d"
+  version "1.18.2,95"
+  sha256 "cff4de3067c2ca9da8109c72d4bcd5b7941417d5b2bb23fc4eb0daac5f9d7953"
 
-  url "https://keysmith.app/versions/Keysmith-#{version.before_comma}.dmg"
+  url "https://keysmith.app/versions/Keysmith-#{version.csv.first}.dmg"
   name "Keysmith"
   desc "Create custom keyboard shortcuts for anything"
   homepage "https://www.keysmith.app/"
@@ -15,4 +15,10 @@ cask "keysmith" do
   depends_on macos: ">= :catalina"
 
   app "Keysmith.app"
+
+  zap trash: [
+    "~/Library/Caches/app.keysmith.Keysmith",
+    "~/Library/Keysmith",
+    "~/Library/Preferences/app.keysmith.Keysmith.plist",
+  ]
 end

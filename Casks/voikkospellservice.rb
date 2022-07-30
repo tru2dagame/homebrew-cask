@@ -6,6 +6,11 @@ cask "voikkospellservice" do
   name "VoikkoSpellService"
   homepage "https://verteksi.net/lab/osxspell/"
 
+  livecheck do
+    url :homepage
+    regex(%r{href=.*?/VoikkoSpellService-(\d+(?:\.\d+)*b\d+)\.dmg}i)
+  end
+
   service "VoikkoSpellService.app"
 
   uninstall signal: ["TERM", "org.puimula.VoikkoSpellService"]

@@ -1,10 +1,11 @@
 cask "marvin" do
-  version "1.58.0"
-  sha256 "e4da5683f44440ee362f38c548d4e35e882853e109b1383c27b020598444669d"
+  version "1.62.0"
+  sha256 "296981ecc8d81f54308b7ec0867515736f56de207429e79577ad66888fb773ce"
 
   url "https://amazingmarvin.s3.amazonaws.com/Marvin-#{version}.dmg",
       verified: "amazingmarvin.s3.amazonaws.com/"
   name "Amazing Marvin"
+  desc "Personal productivity app"
   homepage "https://www.amazingmarvin.com/"
 
   livecheck do
@@ -13,4 +14,10 @@ cask "marvin" do
   end
 
   app "Marvin.app"
+
+  zap trash: [
+    "~/Library/Application Support/Marvin",
+    "~/Library/Logs/Marvin",
+    "~/Library/Preferences/com.amazingmarvin.marvindesktop.plist",
+  ]
 end

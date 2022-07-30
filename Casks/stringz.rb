@@ -1,9 +1,8 @@
 cask "stringz" do
-  version "0.5.1"
-  sha256 "c234949722e30b68b16f68c79fd19ed80a03add47c30784b89ba7c6163c25a63"
+  version "0.7.0"
+  sha256 "709cf19f9359a9a3a7740c888c49ee59120c96256354126113deed45dab7d3c5"
 
   url "https://github.com/mohakapt/Stringz/releases/download/v#{version}/Stringz-#{version}.dmg"
-  appcast "https://github.com/mohakapt/Stringz/releases.atom"
   name "Stringz"
   desc "Editor for localizable files"
   homepage "https://github.com/mohakapt/Stringz"

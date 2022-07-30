@@ -1,12 +1,25 @@
 cask "waterfox" do
-  version "3.0.2,7820.12.15"
-  sha256 "0b215d7779af3c59eee7a43c84bd9695443c8d07e05db250343cdee5f7f56aa2"
+  arch = Hardware::CPU.intel? ? "Setup" : "ARM.Setup"
 
-  url "https://cdn.waterfox.net/releases/osx64/installer/Waterfox%20G#{version.before_comma}%20Setup.dmg"
-  appcast "https://www.waterfox.net/download/"
+  version "4.1.4"
+
+  if Hardware::CPU.intel?
+    sha256 "5b36be9e137031ec9dc567c5e47aeef39bfb852841e3294316f29d41af0cc6dc"
+  else
+    sha256 "4a602c1ffb65c9131b4be40318f19232547efc12346ab73f53b016cd122f494c"
+  end
+
+  url "https://github.com/WaterfoxCo/Waterfox/releases/download/G#{version}/Waterfox.G#{version}.#{arch}.dmg", verified: "github.com/WaterfoxCo/Waterfox/"
   name "Waterfox"
   desc "Web browser"
   homepage "https://www.waterfox.net/"
+
+  livecheck do
+    url :url
+    regex(/^G?(\d+(?:\.\d+)+)$/i)
+  end
+
+  depends_on macos: ">= :sierra"
 
   app "Waterfox.app"
 

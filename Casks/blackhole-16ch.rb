@@ -1,12 +1,16 @@
 cask "blackhole-16ch" do
-  version "0.2.8"
-  sha256 "0cf495206c60e60a45e91f52fac059242fd9cb135feeb8fd75b77a77be1d04dd"
+  version "0.4.0"
+  sha256 "5eb7139e51d50a7f301e160bc38bb09385d49cee9efefe5fcb6d97c97a27cdfb"
 
   url "https://existential.audio/downloads/BlackHole16ch.v#{version}.pkg"
-  appcast "https://github.com/ExistentialAudio/BlackHole/releases.atom"
   name "BlackHole 16ch"
   desc "Virtual Audio Driver"
   homepage "https://existential.audio/blackhole/"
+
+  livecheck do
+    url "https://github.com/ExistentialAudio/BlackHole"
+    strategy :github_latest
+  end
 
   pkg "BlackHole16ch.v#{version}.pkg"
 

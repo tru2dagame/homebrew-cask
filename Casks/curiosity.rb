@@ -1,14 +1,18 @@
 cask "curiosity" do
-  version "0.2"
-  sha256 "22dbb6abaf1de6ccd16e63d1f579ea31b77bc146729cb14b34ae46822feb0206"
+  version "0.5.5"
+  sha256 "cee2a11755b23c55d96a2226750e80ee991ae8bff74bda4ff757717bcbdf9cad"
 
-  url "https://github.com/Dimillian/RedditOS/releases/download/#{version}/Curiosity.app.zip"
-  appcast "https://github.com/Dimillian/RedditOS/releases.atom"
+  url "https://github.com/Dimillian/RedditOS/releases/download/#{version}/Curiosity.zip"
   name "Curiosity"
   desc "SwiftUI Reddit client"
   homepage "https://github.com/Dimillian/RedditOS"
 
-  depends_on macos: ">= :big_sur"
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  depends_on macos: ">= :monterey"
 
   app "Curiosity.app"
 

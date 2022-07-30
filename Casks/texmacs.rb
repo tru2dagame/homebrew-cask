@@ -1,8 +1,15 @@
 cask "texmacs" do
-  version "1.99.18"
-  sha256 "8e1bd0470fa6ea824cf077df1d08567f1fe05a207c94b00fac3bbbafeacf0403"
+  arch = Hardware::CPU.intel? ? "" : "-arm"
 
-  url "https://ftp.texmacs.org/TeXmacs/tmftp/macos/TeXmacs-#{version}.dmg"
+  version "2.1.2"
+
+  if Hardware::CPU.intel?
+    sha256 "db1f9a525554d76794e0339cc19fb4d45eee79bce5f7a176c8dc8b8667181b08"
+  else
+    sha256 "d0a5abf3dafba31073ffc3bbfbeff5300453954a54495affee8a16a2f9196587"
+  end
+
+  url "https://ftp.texmacs.org/TeXmacs/tmftp/macos/TeXmacs-#{version}#{arch}.dmg"
   name "GNU TeXmacs"
   desc "Scientific editing platform"
   homepage "https://www.texmacs.org/"
@@ -14,5 +21,9 @@ cask "texmacs" do
 
   app "TeXmacs.app"
 
-  zap trash: "~/.TeXmacs"
+  zap trash: [
+    "~/.TeXmacs",
+    "~/Library/Preferences/org.texmacs.TeXmacs.plist",
+    "~/Library/Saved Application State/org.texmacs.TeXmacs.savedState",
+  ]
 end

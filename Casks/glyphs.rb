@@ -1,10 +1,10 @@
 cask "glyphs" do
-  version "3.0.2,3050"
-  sha256 "50cedecb8831577ca09c2b71d648b349846b7c1b725a0f4dc3a244d69141893d"
+  version "3.1,3133"
+  sha256 "fb528a35e61542a8c35662ff35849501d9900e3c566c32b3f77393fec5507b98"
 
-  url "https://updates.glyphsapp.com/Glyphs#{version.before_comma}-#{version.after_comma}.zip"
+  url "https://updates.glyphsapp.com/Glyphs#{version.csv.first}-#{version.csv.second}.zip"
   name "Glyphs"
-  desc "Font Editor"
+  desc "Font editor"
   homepage "https://glyphsapp.com/"
 
   livecheck do
@@ -17,10 +17,10 @@ cask "glyphs" do
   app "Glyphs #{version.major}.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.georgseifert.glyphs#{version.major}.sfl*",
+    "~/Library/Application Support/com.GeorgSeifert.Glyphs#{version.major}",
     "~/Library/Application Support/Glyphs",
-    "~/Library/Application Support/com.GeorgSeifert.Glyphs3",
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.georgseifert.glyphs3.sfl*",
-    "~/Library/Caches/com.apple.helpd/SDMHelpData/Other/English/HelpSDMIndexFile/com.GeorgSeifert.Glyphs3.help*",
-    "~/Library/Preferences/com.GeorgSeifert.Glyphs3.plist",
+    "~/Library/Caches/com.apple.helpd/SDMHelpData/Other/English/HelpSDMIndexFile/com.GeorgSeifert.Glyphs#{version.major}.help*",
+    "~/Library/Preferences/com.GeorgSeifert.Glyphs#{version.major}.plist",
   ]
 end

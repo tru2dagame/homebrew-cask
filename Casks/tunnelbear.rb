@@ -1,17 +1,20 @@
 cask "tunnelbear" do
-  version "4.0.4,1608325762"
-  sha256 "9ca595d5f202eb882c746fc8123f50530325774b869e1d44c8ba634f9d3defe9"
+  version "4.1.8,1629989300"
+  sha256 :no_check
 
-  url "https://tunnelbear.s3.amazonaws.com/downloads/mac/TunnelBear-#{version.before_comma}.zip",
-      verified: "tunnelbear.s3.amazonaws.com/"
+  url "https://s3.amazonaws.com/tunnelbear/downloads/mac/TunnelBear.zip",
+      verified: "s3.amazonaws.com/tunnelbear/"
   name "TunnelBear"
   desc "VPN client for secure internet access and private browsing"
   homepage "https://www.tunnelbear.com/"
 
   livecheck do
-    url "https://tunnelbear.s3.amazonaws.com/downloads/mac/appcast.xml"
-    strategy :sparkle
+    url :url
+    strategy :extract_plist
   end
+
+  auto_updates true
+  depends_on macos: ">= :sierra"
 
   app "TunnelBear.app"
 
@@ -20,16 +23,18 @@ cask "tunnelbear" do
             delete:    "/Library/PrivilegedHelperTools/com.tunnelbear.mac.tbeard"
 
   zap trash: [
-    "~/Library/Preferences/com.tunnelbear.mac.TunnelBear.plist",
-    "~/Library/Caches/com.tunnelbear.mac.TunnelBear",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.tunnelbear.mac.tunnelbear.sfl*",
     "~/Library/Application Support/com.tunnelbear.mac.TunnelBear",
     "~/Library/Application Support/TunnelBear",
     "~/Library/Caches/com.crashlytics.data/com.tunnelbear.mac.TunnelBear",
     "~/Library/Caches/com.plausiblelabs.crashreporter.data/com.tunnelbear.mac.TunnelBear",
+    "~/Library/Caches/com.tunnelbear.mac.TunnelBear",
     "~/Library/Caches/io.fabric.sdk.mac.data/com.tunnelbear.mac.TunnelBear",
     "~/Library/Cookies/com.tunnelbear.mac.TunnelBear.binarycookies",
     "~/Library/LaunchAgents/com.tunnelbear.mac.tbeara.plist",
     "~/Library/Logs/TunnelBear",
+    "~/Library/Preferences/com.tunnelbear.mac.TunnelBear.plist",
+    "~/Library/Preferences/group.com.tunnelbear.main.DataContainer.plist",
+    "~/Library/WebKit/com.tunnelbear.mac.TunnelBear",
   ]
 end

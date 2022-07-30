@@ -1,15 +1,16 @@
 cask "codeexpander" do
-  version "3.5.4"
-  sha256 "8f62f78502da7196e3505f7db195d4fe0f1272629a098e8fa9cbb45fdb18dc80"
+  version "4.2.13"
+  sha256 "d2700dc3ae0dfea4727a8ce289a4238c43b72fdbfb82ec7d0db42c42b137278a"
 
   url "https://github.com/oncework/codeexpander/releases/download/#{version.major_minor}.x/CodeExpander-#{version}.dmg"
   name "CodeExpander"
+  desc "Cloud synchronization development tool"
   homepage "https://github.com/oncework/codeexpander"
 
   livecheck do
     url :url
     strategy :github_latest
-    regex(%r{href=.*?/CodeExpander-(\d+(?:\.\d+)*)\.dmg}i)
+    regex(%r{href=.*?/CodeExpander-(\d+(?:\.\d+)+)\.dmg}i)
   end
 
   app "CodeExpander.app"

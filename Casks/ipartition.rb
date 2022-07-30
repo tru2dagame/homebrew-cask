@@ -12,5 +12,14 @@ cask "ipartition" do
   desc "Disk partitioning tool"
   homepage "https://coriolis-systems.com/iPartition/"
 
+  depends_on macos: "<= :high_sierra"
+
   app "iPartition.app"
+
+  zap trash: "~/Library/Preferences/com.coriolis-systems.iPartition.plist"
+
+  caveats do
+    discontinued
+    free_license "https://coriolis-systems.com/downloads/iPartition.png"
+  end
 end

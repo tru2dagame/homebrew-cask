@@ -1,11 +1,16 @@
 cask "ssokit" do
-  version "1.1.0"
-  sha256 "e3da08bae091e344bb733c822c6b02dfd1aa9c7cca8a05a74838d69ac5b60028"
+  version "1.2.1"
+  sha256 "830006cbb59dc3529dfae91f30ee1b1362f9be5952a599e9083d5fcaed710e34"
 
   url "https://github.com/rangaofei/SSokit-qmake/releases/download/#{version}/SSokit_#{version}.dmg"
-  appcast "https://github.com/rangaofei/ssokit-qmake/releases.atom"
-  name "SSoikt"
+  name "SSokit"
+  desc "TCP and UDP debug tool"
   homepage "https://github.com/rangaofei/SSokit-qmake"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   app "SSokit.app"
 

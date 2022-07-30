@@ -1,21 +1,26 @@
 cask "expandrive" do
-  version "7.6.5"
-  sha256 "58db6ed46daeb50363c7f8ea5be725486b8a5f4b67b45bceec3a99ace3339efe"
+  version "7,2022.7.1"
+  sha256 "9335d249e785fa6222b703a3ce29e594a27c90f0a4fef62cf188b7105ea11afb"
 
-  url "https://updates.expandrive.com/apps/expandrive#{version.major}/v/#{version.dots_to_hyphens}/update_download"
-  appcast "https://updates.expandrive.com/appcast/expandrive#{version.major}.json?version=#{version.major}.0.0"
+  url "https://updates.expandrive.com/apps/expandrive#{version.csv.first}/v/#{version.csv.second.dots_to_hyphens}/update_download"
   name "ExpanDrive"
   desc "Network drive and browser for cloud storage"
   homepage "https://www.expandrive.com/apps/expandrive/"
+
+  livecheck do
+    url "https://updates.expandrive.com/apps/expandrive#{version.csv.first}/download_latest"
+    strategy :header_match do |headers|
+      matches = headers["location"].scan(/expandrive(\d+).*ExpanDrive[._-](\d+\.\d+\.\d+)\.dmg/).flatten
+      "#{matches[0]},#{matches[1]}"
+    end
+  end
 
   app "ExpanDrive.app"
 
   zap trash: [
     "~/Library/Application Support/ExpanDrive",
     "~/Library/Preferences/com.expandrive.exfs.plist",
-    "~/Library/Preferences/com.expandrive.ExpanDrive.plist",
-    "~/Library/Preferences/com.expandrive.ExpanDrive2.plist",
-    "~/Library/Preferences/com.expandrive.ExpanDrive3.plist",
+    "~/Library/Preferences/com.expandrive.ExpanDrive*.plist",
     "~/Library/Preferences/com.expandrive.ExpanDrive.helper.plist",
   ]
 end

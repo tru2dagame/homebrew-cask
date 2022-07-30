@@ -1,14 +1,16 @@
 cask "progressive-downloader" do
-  version "4.7.1"
-  sha256 "55844fb90760856c2435a79d7e64b1c4edc349078e127375a3d03efe5f79b12a"
+  version "5.3"
+  sha256 "61094da70e77fcd43eb5111c1a9fdb09e383a6ba0edcc2f34ac869ac98ec06fd"
 
   url "https://www.macpsd.net/update/#{version}/PSD.dmg"
-  appcast "https://www.macpsd.net/"
   name "Progressive Downloader"
   desc "Download manager"
   homepage "https://www.macpsd.net/"
 
-  depends_on macos: ">= :yosemite"
+  livecheck do
+    url :homepage
+    regex(%r{href=.*?/(\d+(?:\.\d+)+)/PSD\.dmg}i)
+  end
 
   app "Progressive Downloader.app"
 

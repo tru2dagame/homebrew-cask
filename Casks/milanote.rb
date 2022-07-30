@@ -1,12 +1,17 @@
 cask "milanote" do
-  version "2.2.24"
-  sha256 "113228205b9af2f808d26a1d432449b6b07c022340f231d548c6004cdd01f3a2"
+  version "3.2.1"
+  sha256 "3456652889b49d6f10907dd4c84b208c286cdffaf41d13e1cddfc2c83c745d90"
 
   url "https://milanote-app-releases.s3.amazonaws.com/Milanote-#{version}.dmg",
       verified: "milanote-app-releases.s3.amazonaws.com/"
-  appcast "https://www.milanote.com/download-mac-app"
   name "Milanote"
+  desc "Organize your ideas and projects into visual boards"
   homepage "https://www.milanote.com/"
+
+  livecheck do
+    url "https://milanote-app-releases.s3.amazonaws.com/latest-mac.yml"
+    strategy :electron_builder
+  end
 
   app "Milanote.app"
 

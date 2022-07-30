@@ -1,11 +1,11 @@
 cask "turbovnc-viewer" do
-  version "2.2.5"
-  sha256 "912277534d5df0e648c19b27e9c3a23380a71a9d6ad5cef2fb87f3e65a77185a"
+  version "3.0"
+  sha256 "7e4436dbac6daf00e2828ed1ddbe297de6dd07c4e0200b08b550d1fb138748b6"
 
   url "https://downloads.sourceforge.net/turbovnc/#{version}/TurboVNC-#{version}.dmg",
       verified: "sourceforge.net/turbovnc/"
-  appcast "https://sourceforge.net/projects/turbovnc/rss"
   name "TurboVNC"
+  desc "Remote display system"
   homepage "https://www.turbovnc.org/"
 
   pkg "TurboVNC.pkg"

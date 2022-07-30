@@ -6,5 +6,10 @@ cask "pwnagetool" do
   name "PwnageTool"
   homepage "https://iphoneroot.com/utilities/#PwnageTool"
 
+  livecheck do
+    url :homepage
+    regex(%r{href=.*?/PwnageTool_(\d+(?:\.\d+)*)\.dmg}i)
+  end
+
   app "PwnageTool.app"
 end

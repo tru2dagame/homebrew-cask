@@ -1,11 +1,11 @@
 cask "netiquette" do
-  version "1.1.1"
-  sha256 "974d1842a9cadd39ae6883f132625c95ab3132fb86ffb141c7146a738a3f83f3"
+  version "2.1.1"
+  sha256 "3f27ee68809f776f893af9f542e0a648d4641e22c98ca962a7c549346ac73f86"
 
-  url "https://bitbucket.org/objective-see/deploy/downloads/Netiquette_#{version}.zip",
-      verified: "bitbucket.org/objective-see/"
-  appcast "https://objective-see.com/products/changelogs/Netiquette.txt"
+  url "https://github.com/objective-see/Netiquette/releases/download/v#{version}/Netiquette_#{version}.zip",
+      verified: "github.com/objective-see/"
   name "Netiquette"
+  desc "Network monitor"
   homepage "https://objective-see.com/products/netiquette.html"
 
   depends_on macos: ">= :mojave"

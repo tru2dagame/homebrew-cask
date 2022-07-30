@@ -1,9 +1,10 @@
 cask "compositor" do
-  version "1.14.0"
-  sha256 "9ede6513b3ff29d229a697f4cd3da445017c99e0221d744d506904be08c5a7b9"
+  version "1.18.0"
+  sha256 "3ee0fba6af6b40bb59b9d8a8a5adef608cbd0a25f3f2f68dbe04529f96e9ca23"
 
   url "https://compositorapp.com/updates/Compositor_#{version}.zip"
   name "Compositor"
+  desc "WYSIWYG LaTeX editor"
   homepage "https://compositorapp.com/"
 
   livecheck do
@@ -11,7 +12,7 @@ cask "compositor" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :el_capitan"
 
   app "Compositor.app"
 

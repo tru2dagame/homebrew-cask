@@ -1,13 +1,26 @@
 cask "ivpn" do
-  version "2.12.10"
-  sha256 "b955b230977d64b45cb81b6f4a31b8f42dbc864b98bc91202f46a495c89b3d21"
+  arch = Hardware::CPU.intel? ? "" : "-arm64"
 
-  url "https://cdn.ivpn.net/releases/osx/IVPN-#{version}.dmg"
-  appcast "https://www.ivpn.net/setup/mac-changelog.html"
+  version "3.9.0"
+
+  if Hardware::CPU.intel?
+    sha256 "1401aebc95034a9f4ec78fec99cac37ea8af9f0723e2ad40848f02414c0749c8"
+  else
+    sha256 "68f44e4bdc734cf659268ab4905d09384b7c7d7899f3a71fba6ae71732579bb4"
+  end
+
+  url "https://repo.ivpn.net/macos/bin/IVPN-#{version}#{arch}.dmg"
   name "IVPN"
+  desc "VPN client"
   homepage "https://www.ivpn.net/apps-macos"
 
+  livecheck do
+    url :homepage
+    regex(/href=.*?IVPN[._-]v?(\d+(?:\.\d+)+)#{arch}\.dmg/i)
+  end
+
   auto_updates true
+  depends_on macos: ">= :mojave"
 
   app "IVPN.app"
 
@@ -16,9 +29,9 @@ cask "ivpn" do
   end
 
   uninstall delete:    [
-    "/Library/Application Support/IVPN",
-    "/Library/PrivilegedHelperTools/net.ivpn.client.Helper",
-  ],
+              "/Library/Application Support/IVPN",
+              "/Library/PrivilegedHelperTools/net.ivpn.client.Helper",
+            ],
             launchctl: "net.ivpn.client.Helper",
             quit:      "net.ivpn.client.IVPN"
 

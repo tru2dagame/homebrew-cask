@@ -1,14 +1,23 @@
 cask "futubull" do
-  version "10.13.738,202012151016"
-  sha256 "a329ad46b20b6d571cac32f8e42b3f0841c6baf0200b422a341bb0fd59f7ece8"
+  version "12.7.2608"
+  sha256 "22bf6498713de8b0751a33490d6840764ccfaea872fcd8beceaa29bed1b3eeab"
 
-  url "https://softwarefile.futunn.com/FTNNForMac_#{version.before_comma}_#{version.after_comma}_Website.dmg"
-  appcast "https://www.futunn.com/download/mac?lang=en-US"
+  url "https://softwarefile.futunn.com/FTNNForMac_#{version}_Website.dmg"
   name "Futubull"
   name "FutuNiuniu"
   desc "Trading application"
   homepage "https://www.futunn.com/"
 
+  livecheck do
+    url "https://www.futunn.com/download/history?client=11"
+    regex(/FTNN[._-]v?(\d+(?:\.\d+)+)[._-]Website\.dmg/i)
+  end
+
   # Renamed for consistency: app name is different in the Finder and in a shell.
   app "FutuNiuniu.app", target: "Futubull.app"
+
+  zap trash: [
+    "~/Library/Application Scripts/cn.futu.Niuniu",
+    "~/Library/Containers/cn.futu.Niuniu",
+  ]
 end

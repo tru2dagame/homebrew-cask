@@ -1,12 +1,18 @@
 cask "netbeans" do
-  version "12.2"
-  sha256 "25ef01af76e8730e394faae205fcd47fa7d084703322c008c0245f2bf0713ff6"
+  version "14"
+  sha256 "4dc627a377679504044d39fa10c410e9559d70c122a3cee0fc17ddceaf605d17"
 
-  url "https://www-eu.apache.org/dist/netbeans/netbeans/#{version}/Apache-NetBeans-#{version}-bin-macosx.dmg"
-  appcast "https://www-eu.apache.org/dist/netbeans/netbeans/"
+  url "https://dlcdn.apache.org/netbeans/netbeans-installers/#{version}/Apache-NetBeans-#{version}-bin-macosx.dmg"
   name "NetBeans IDE"
-  desc "Open-source development environment, tooling"
-  homepage "https://netbeans.apache.org/download/index.html"
+  desc "Development environment, tooling platform and application framework"
+  homepage "https://netbeans.apache.org/"
+
+  # Major releases sometimes only use the major version (13) instead of
+  # major/minor (13.0).
+  livecheck do
+    url "https://netbeans.apache.org/download/index.html"
+    regex(/>\s*Apache\s*NetBeans\s*v?(\d+(?:\.\d+)*)\s*</im)
+  end
 
   pkg "Apache NetBeans #{version}.pkg"
 

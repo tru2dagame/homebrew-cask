@@ -1,12 +1,16 @@
 cask "latest" do
-  version "0.7.1"
-  sha256 :no_check
+  version "0.8.2,736"
+  sha256 "875d1482ce69676065a794b508b34275b3d99715d3ce9eb74eb025e4b6a2d71c"
 
-  url "https://max.codes/latest/download"
-  appcast "https://max.codes/latest/update.xml"
+  url "https://max.codes/latest/#{version.csv.first}.zip"
   name "Latest"
   desc "Utility that shows the latest app updates"
   homepage "https://max.codes/latest"
+
+  livecheck do
+    url "https://max.codes/latest/update.xml"
+    strategy :sparkle
+  end
 
   auto_updates true
   depends_on macos: ">= :high_sierra"

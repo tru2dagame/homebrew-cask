@@ -1,14 +1,18 @@
 cask "qbserve" do
-  version "1.86"
-  sha256 "734ec7d59ba054b2e1cfbf32ca90ea9a7f4dd442fc7a5cd10a2afaa8426b4262"
+  version "1.89"
+  sha256 "517a975eb915c90df9ac9a49c0e009e0926008890b747ceba20a1476c80e58b1"
 
   url "https://qotoqot.com/qbserve/app/Qbserve-#{version}.zip"
-  appcast "https://qotoqot.com/qbserve/"
   name "Qbserve"
+  desc "Automatic time tracker"
   homepage "https://qotoqot.com/qbserve/"
 
+  livecheck do
+    url :homepage
+    regex(%r{href=.*?/Qbserve[._-]v?(\d+(?:\.\d+)+)\.zip}i)
+  end
+
   auto_updates true
-  depends_on macos: ">= :yosemite"
 
   app "Qbserve.app"
 

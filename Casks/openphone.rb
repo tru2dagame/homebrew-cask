@@ -1,12 +1,22 @@
 cask "openphone" do
-  version "2.0.19"
-  sha256 "11c2a20e311f260bd4535af50c55c1186ed7c29fa12b2389a4438b56d6bdbd30"
+  version "3.5.1"
+  sha256 "e5be4e2a56fe3495f491c468171b390be6423f8becd831283daf5bd56e8dedf0"
 
   url "https://download.openphone.co/OpenPhone-#{version}.dmg"
-  appcast "https://s3-us-west-2.amazonaws.com/download.openphone.co/latest-mac.yml"
   name "OpenPhone"
   desc "Business phone for professionals, teams, and companies"
   homepage "https://www.openphone.co/"
 
+  livecheck do
+    url "https://s3-us-west-2.amazonaws.com/download.openphone.co/latest-mac.yml"
+    strategy :electron_builder
+  end
+
   app "OpenPhone.app"
+
+  zap trash: [
+    "~/Library/Application Support/OpenPhone",
+    "~/Library/Preferences/ca.illusive.openphone.plist",
+    "~/Library/Saved Application State/ca.illusive.openphone.savedState",
+  ]
 end

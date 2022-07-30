@@ -1,14 +1,29 @@
 cask "flrig" do
-  version "1.3.53"
-  sha256 "b39c156d4cdbfe0c26fbb2693957f8856c6b8ddfbc9ba88f2b58c1337d567815"
+  version "1.4.6"
 
-  url "https://downloads.sourceforge.net/fldigi/fldigi/flrig-#{version.before_comma}_x86_64.dmg"
-  appcast "https://sourceforge.net/projects/fldigi/rss?path=/flrig"
+  if MacOS.version <= :catalina
+    sha256 "f589e2c9df666a16b102e4786f48c71ba5ba1b91e23fa22e588811e944f182c9"
+    url "https://downloads.sourceforge.net/fldigi/fldigi/flrig-#{version}_HS.dmg"
+  else
+    sha256 "db695231122941f1c5f155b2e2f2491b1e248fede025fb53675d369662b154df"
+    url "https://downloads.sourceforge.net/fldigi/fldigi/flrig-#{version}_BS.dmg"
+  end
+
   name "flrig"
   desc "Ham radio rig control"
   homepage "https://sourceforge.net/projects/fldigi/files/flrig/"
 
-  app "flrig-#{version.before_comma}.app"
+  livecheck do
+    url "https://sourceforge.net/projects/fldigi/rss?path=/flrig"
+    strategy :page_match
+    regex(/flrig[._-]v?(\d+(?:\.\d+)+)\w*\.dmg/i)
+  end
+
+  app "flrig.app"
+
+  preflight do
+    staged_path.glob("flrig-*.app").first.rename(staged_path/"flrig.app")
+  end
 
   zap trash: "~/.flrig"
 end

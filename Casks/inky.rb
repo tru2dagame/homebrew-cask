@@ -1,13 +1,20 @@
 cask "inky" do
-  version "0.11.0"
-  sha256 "eb6c25173b19e0550f48791a498ab1ce77cb0f49a6462cc357fee0c1d924ff2b"
+  version "0.13.0"
+  sha256 "4f7045589de7163f384b1d79dafd18f2567d74390d7c28e0242076fba2f45438"
 
   url "https://github.com/inkle/inky/releases/download/#{version}/Inky_mac.dmg",
       verified: "github.com/inkle/inky/"
-  appcast "https://github.com/inkle/inky/releases.atom"
   name "Inky"
   desc "Editor for ink: inkle's narrative scripting language"
   homepage "https://www.inklestudios.com/ink/"
 
   app "Inky.app"
+
+  zap trash: [
+    "~/Library/Application Support/Inky",
+    "~/Library/Preferences/com.inkle.inky.helper.plist",
+    "~/Library/Preferences/com.inkle.inky.plist",
+    "~/Library/Saved Application State/com.inkle.inky.savedState",
+    "~/Library/Logs/Inky",
+  ]
 end

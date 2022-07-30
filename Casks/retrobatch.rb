@@ -1,9 +1,10 @@
 cask "retrobatch" do
-  version "1.4.3,946"
-  sha256 :no_check
+  version "1.4.5,1024"
+  sha256 "bcfdde7006a8aa207ff7d9f8327787cb22c225a224575b5af12a99d45860eeb6"
 
-  url "https://flyingmeat.com/download/Retrobatch.zip"
+  url "https://flyingmeat.com/download/Retrobatch-#{version.csv.first}.zip"
   name "Retrobatch"
+  desc "Batch image processor"
   homepage "https://flyingmeat.com/retrobatch/"
 
   livecheck do

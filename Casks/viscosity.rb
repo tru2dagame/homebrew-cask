@@ -1,28 +1,33 @@
 cask "viscosity" do
-  version "1.9"
-  sha256 "516b93b0f1e3aad3953f20c0aa0edfe646d6c4796553ebfa4befc931c3e54e56"
+  version "1.10.3"
+  sha256 "e0f670a5a93b93c4fe3a0505b836858d2c86fa42dde0474d29d477f90fa49582"
 
   url "https://swupdate.sparklabs.com/download/mac/release/viscosity/Viscosity%20#{version}.dmg"
-  appcast "https://swupdate.sparklabs.com/appcast/mac/release/viscosity/"
   name "Viscosity"
-  desc "VPN client for secure internet access and private browsing"
+  desc "OpenVPN client with AppleScript support"
   homepage "https://www.sparklabs.com/viscosity/"
 
+  livecheck do
+    url "https://swupdate.sparklabs.com/appcast/mac/release/viscosity/"
+    strategy :sparkle, &:short_version
+  end
+
   auto_updates true
+  depends_on macos: ">= :catalina"
 
   app "Viscosity.app"
 
   uninstall delete:    [
-    "/Library/Application Support/Viscosity",
-    "/Library/PrivilegedHelperTools/com.sparklabs.ViscosityHelper",
-  ],
+              "/Library/Application Support/Viscosity",
+              "/Library/PrivilegedHelperTools/com.sparklabs.ViscosityHelper",
+            ],
             launchctl: "com.sparklabs.ViscosityHelper",
             signal:    ["TERM", "com.viscosityvpn.Viscosity"]
 
   zap trash: [
     "~/Library/Application Support/Viscosity",
-    "~/Library/Caches/com.viscosityvpn.Viscosity",
-    "~/Library/Cookies/com.viscosityvpn.Viscosity.binarycookies",
+    "~/Library/Caches/com.plausiblelabs.crashreporter.data/com.viscosityvpn.Viscosity",
+    "~/Library/HTTPStorages/com.viscosityvpn.Viscosity",
     "~/Library/Preferences/com.viscosityvpn.Viscosity.plist",
   ]
 end

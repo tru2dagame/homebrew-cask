@@ -1,14 +1,21 @@
 cask "p4v" do
-  version "20.3,2060285"
-  sha256 "8b42a0e1dfe13da490a52bf03f65947b48b58a28bedb6277a1caf3a320a596c3"
+  version "2022.2,2304646"
+  sha256 "d72c017e516d37508e0433dcf94fa96e208781a24a161bb545eee3100cfb963b"
 
-  url "https://cdist2.perforce.com/perforce/r#{version.before_comma}/bin.macosx1015x86_64/P4V.dmg"
-  appcast "https://www.perforce.com/perforce/doc.current/user/p4vnotes.txt"
-  name "Perforce Visual Client"
+  url "https://cdist2.perforce.com/perforce/r#{version.major[-2..]}.#{version.minor}/bin.macosx1015x86_64/P4V.dmg"
+  name "Perforce Helix Visual Client"
   name "P4Merge"
   name "P4V"
   desc "Visual client for Helix Core"
   homepage "https://www.perforce.com/products/helix-core-apps/helix-visual-client-p4v"
+
+  livecheck do
+    url "https://www.perforce.com/support/software-release-index"
+    regex(%r{(?:Patch|Release) for[^<]+?Helix Visual Client[^<]+?v?(\d+(?:\.\d+)+)/(\d+)}im)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
+    end
+  end
 
   app "p4v.app"
   app "p4admin.app"
@@ -21,7 +28,7 @@ cask "p4v" do
   binary p4_wrapper, target: "p4merge"
 
   preflight do
-    IO.write p4_wrapper, <<~EOS
+    File.write p4_wrapper, <<~EOS
       #!/bin/bash
       set -euo pipefail
       COMMAND=$(basename "$0")

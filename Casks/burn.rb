@@ -1,13 +1,14 @@
 cask "burn" do
-  version "2.7.10"
-  sha256 "2cffd7b897a906d1aac1cbb6b876b3cb52a403a5d340e620cb9bbfd02242680d"
+  version "3.1.6"
+  sha256 "a943a9a66a664375cf92cfe4f04e23d1203b5e88013a06eff8adc858ab2e4fee"
 
   url "https://downloads.sourceforge.net/burn-osx/Burn/#{version}/burn-#{version}.zip",
       verified: "downloads.sourceforge.net/burn-osx/"
-  appcast "https://sourceforge.net/projects/burn-osx/rss?path=/Burn"
   name "Burn"
   desc "CD burning application"
   homepage "https://burn-osx.sourceforge.io/"
 
   app "Burn.localized/Burn.app"
+
+  zap trash: "~/Library/Preferences/com.kiwifruitware.Burn.plist"
 end

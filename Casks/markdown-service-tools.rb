@@ -7,6 +7,11 @@ cask "markdown-service-tools" do
   desc "Collection of services for Markdown-formatted text"
   homepage "https://brettterpstra.com/projects/markdown-service-tools/"
 
+  livecheck do
+    url :homepage
+    regex(%r{href=.*?/MarkdownServiceTools(\d+(?:\.\d+)*)\.zip}i)
+  end
+
   depends_on formula: "multimarkdown"
 
   service "MarkdownServiceTools#{version}/md - Convert - MultiMarkdown to RTF.workflow"

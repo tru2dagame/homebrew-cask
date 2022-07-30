@@ -1,9 +1,10 @@
 cask "physicseditor" do
-  version "1.8.5"
-  sha256 "4ec8bbd008504c581d2838059584878693d0c5d462d11d8b71afa65ce70fa35e"
+  version "1.9.2"
+  sha256 "1b3617ebaa708e988de76a31f7252fe554d7bd061955428914879b23255e6f55"
 
-  url "https://www.codeandweb.com/download/physicseditor/#{version}/PhysicsEditor-#{version}-uni.dmg"
+  url "https://www.codeandweb.com/download/physicseditor/#{version}/PhysicsEditor-#{version}.dmg"
   name "PhysicsEditor"
+  desc "2D collision shape editor"
   homepage "https://www.codeandweb.com/physicseditor"
 
   livecheck do

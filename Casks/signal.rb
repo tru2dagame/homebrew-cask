@@ -1,12 +1,23 @@
 cask "signal" do
-  version "1.39.4"
-  sha256 "8697d193b8bcf064d54d6b2b4b4fa8fbc2806919f0bf1e280afe22070d1c2736"
+  arch = Hardware::CPU.intel? ? "x64" : "arm64"
 
-  url "https://updates.signal.org/desktop/signal-desktop-mac-#{version}.dmg"
-  appcast "https://github.com/signalapp/Signal-Desktop/releases.atom"
+  version "5.52.0"
+
+  if Hardware::CPU.intel?
+    sha256 "2c3b795c5682a0270e647e5ca47dc697239f26078e15648b4721d22bea98dfe3"
+  else
+    sha256 "6787520e639add9f646614549275491e3d6061878894185069faffb4657d7b73"
+  end
+
+  url "https://updates.signal.org/desktop/signal-desktop-mac-#{arch}-#{version}.dmg"
   name "Signal"
-  desc "Cross-platform instant messaging application focusing on security"
+  desc "Instant messaging application focusing on security"
   homepage "https://signal.org/"
+
+  livecheck do
+    url "https://updates.signal.org/desktop/latest-mac.yml"
+    strategy :electron_builder
+  end
 
   auto_updates true
 

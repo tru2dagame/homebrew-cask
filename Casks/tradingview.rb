@@ -1,11 +1,18 @@
 cask "tradingview" do
-  version "1.0.0-beta.1"
-  sha256 "3aa3829f41e0e2891cf2c9bf247f6a3faf2be80bf779bbf6e8f1046e05418527"
+  version "1.0.13"
+  sha256 "fc44b86d11e05594ca5618662f8401c3d092c34291215692a10c5bd163f3e45a"
 
-  url "https://tvd-packages.tradingview.com/beta/#{version}/win32/x64/TradingView.dmg"
-  name "TradingView Desktop Beta"
-  desc "Desktop client for TradingView"
-  homepage "https://www.tradingview.com/blog/en/tradingview-desktop-beta-is-out-now-21962/"
+  url "https://tvd-packages.tradingview.com/stable/#{version}/darwin/TradingView.dmg"
+  name "TradingView Desktop"
+  desc "Charting and social-networking for investment traders"
+  homepage "https://www.tradingview.com/desktop/"
+
+  livecheck do
+    url "https://tvd-packages.tradingview.com/stable/latest/darwin/stable-mac.yml"
+    strategy :electron_builder
+  end
+
+  auto_updates true
 
   app "TradingView.app"
 

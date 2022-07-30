@@ -1,11 +1,20 @@
 cask "xnviewmp" do
-  version "0.98.0"
-  sha256 "706b8e0dfea9efafc1b14413797ab594626be79a1cf12efe960e0862ed7116c0"
+  version "1.00"
+  sha256 :no_check
 
-  url "https://download.xnview.com/old_versions/XnViewMP-#{version.no_dots}-mac.dmg"
+  url "https://download.xnview.com/XnViewMP-mac.dmg"
   name "XnViewMP"
   desc "Photo viewer, image manager, image resizer and more"
-  homepage "https://www.xnview.com/"
+  homepage "https://www.xnview.com/en/xnviewmp/"
+
+  livecheck do
+    url :homepage
+    regex(/>XnView\sMP\sv?(\d+(?:\.\d+)+)[\s<]/i)
+  end
+
+  depends_on macos: ">= :high_sierra"
 
   app "XnViewMP.app"
+
+  zap trash: "~/Library/Saved Application State/com.xnview.XnView.savedState"
 end

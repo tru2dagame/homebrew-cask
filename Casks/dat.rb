@@ -2,12 +2,11 @@ cask "dat" do
   version "3.0.1"
   sha256 "f6c89150f72568c2de1f42653bca0fa356cbb24704f31f1ef5e11f75b0095866"
 
-  url "https://github.com/dat-land/dat-desktop/releases/download/v#{version}/dat-desktop-#{version}-mac.zip",
-      verified: "github.com/dat-land/dat-desktop/"
-  appcast "https://github.com/dat-land/dat-desktop/releases.atom"
+  url "https://github.com/dat-ecosystem-archive/dat-desktop/releases/download/v#{version}/dat-desktop-#{version}-mac.zip",
+      verified: "github.com/dat-ecosystem-archive/dat-desktop/"
   name "Dat Desktop"
   desc "Peer to peer data sharing app built for humans"
-  homepage "https://datproject.org/"
+  homepage "https://dat-ecosystem.org/"
 
   app "Dat Desktop.app"
 
@@ -21,4 +20,8 @@ cask "dat" do
     "~/.dat",
     "~/.dat-desktop",
   ]
+
+  caveats do
+    discontinued
+  end
 end

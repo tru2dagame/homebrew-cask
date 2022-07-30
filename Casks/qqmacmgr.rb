@@ -7,5 +7,10 @@ cask "qqmacmgr" do
   name "腾讯电脑管家"
   homepage "https://lemon.qq.com/index_o.html"
 
+  livecheck do
+    url :homepage
+    regex(%r{href=.*?/QQMacMgr_(\d+(?:\.\d+)*)\.dmg}i)
+  end
+
   app "QQMacMgr.app"
 end

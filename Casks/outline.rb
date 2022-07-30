@@ -1,8 +1,8 @@
 cask "outline" do
-  version "3.2011.1,2011.1.1"
-  sha256 "051bf998a2c99cdc72ac9de3d525a8c779995977a74fc14ec9ce129830d59b5e"
+  version "3.2203.4,2225"
+  sha256 "68eb494a9b91c80c8c5a734c22d24372f4333da0e6a8e203b6de3767ef42d965"
 
-  url "https://static.outline.ws/versions/Outline_#{version.before_comma}.zip"
+  url "https://static.outline.ws/versions/Outline_#{version.csv.first}.zip"
   name "Outline"
   desc "Note taking app"
   homepage "https://outline.ws/"
@@ -13,4 +13,15 @@ cask "outline" do
   end
 
   app "Outline.app"
+
+  zap trash: [
+    "~/Library/Application Scripts/6WN928JT76.com.gorillized",
+    "~/Library/Application Scripts/com.gorillized.outlinemac.standalone.extension",
+    "~/Library/Application Support/com.gorillized.outlinemac.standalone",
+    "~/Library/Caches/com.gorillized.outlinemac.standalone",
+    "~/Library/Containers/com.gorillized.outlinemac.standalone.extension",
+    "~/Library/Group Containers/6WN928JT76.com.gorillized",
+    "~/Library/Outline",
+    "~/Library/Preferences/com.gorillized.outlinemac.standalone.plist",
+  ]
 end

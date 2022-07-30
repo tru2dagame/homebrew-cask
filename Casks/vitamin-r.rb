@@ -3,12 +3,13 @@ cask "vitamin-r" do
     version "2.58"
     sha256 "c6c631430b44359aa022d9ca5ca6e98dbdf7258f2ceae0353f344a035682661e"
   else
-    version "3.23"
-    sha256 "7e3bf168ab4b2b56e86cb2592b281bee8405e081a97a485c18cf0e0f6aebc97f"
+    version "4.12"
+    sha256 "0e4e753e2e17e5343096c3ea09e943797b88dfc11debff42dec5993928af89cc"
   end
 
   url "https://www.publicspace.net/download/signedVitamin#{version.major}.zip"
   name "Vitamin-R"
+  desc "Collection of productivity tools and techniques"
   homepage "https://www.publicspace.net/Vitamin-R/"
 
   livecheck do
@@ -19,4 +20,14 @@ cask "vitamin-r" do
   auto_updates true
 
   app "Vitamin-R #{version.major}.app"
+
+  uninstall login_item: "Vitamin-R #{version.major}"
+
+  zap trash: [
+    "~/Library/Application Support/Vitamin-R",
+    "~/Library/Caches/net.publicspace.dist.vitaminr#{version.major}",
+    "~/Library/HTTPStorages/net.publicspace.dist.vitaminr#{version.major}",
+    "~/Library/HTTPStorages/net.publicspace.dist.vitaminr#{version.major}.binarycookies",
+    "~/Library/Preferences/net.publicspace.dist.vitaminr#{version.major}.plist",
+  ]
 end

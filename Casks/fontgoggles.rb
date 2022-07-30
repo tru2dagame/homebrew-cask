@@ -1,13 +1,14 @@
 cask "fontgoggles" do
-  version "1.1.17"
-  sha256 "48c0c3e8d75f7688184e9691dfdb3251eee7a00440431d78ba3170a0332eac3e"
+  version "1.6.0"
+  sha256 "2c6513ea4e11e344df7675ecb9dc984fcb841b254ed31d06cc990af1e7c1bbc1"
 
   url "https://github.com/justvanrossum/fontgoggles/releases/download/v#{version}/FontGoggles.dmg",
       verified: "github.com/justvanrossum/fontgoggles/"
-  appcast "https://github.com/justvanrossum/fontgoggles/releases.atom"
   name "FontGoggles"
   desc "Font viewer for various font formats"
   homepage "https://fontgoggles.org/"
 
   app "FontGoggles.app"
+
+  zap trash: "~/Library/Preferences/com.github.justvanrossum.FontGoggles.plist"
 end

@@ -1,8 +1,8 @@
 cask "clamxav" do
-  version "3.1.2,8690"
-  sha256 "88ef445f3b806b4d1c6fd7c6f73edb970f71b8f0547b0bb4c71990ff03d248b2"
+  version "3.4,9154"
+  sha256 "32d07e6e04c6b8df0a38d69d7d371e48969b0aa4794bb13863296976cc9f96ff"
 
-  url "https://cdn.clamxav.com/ClamXAVdownloads/ClamXAV_#{version.before_comma}_#{version.after_comma}.zip"
+  url "https://cdn.clamxav.com/ClamXAVdownloads/ClamXAV_#{version.csv.first}_#{version.csv.second}.zip"
   name "ClamXAV"
   desc "Anti-virus and malware scanner"
   homepage "https://www.clamxav.com/"
@@ -11,6 +11,8 @@ cask "clamxav" do
     url "https://www.clamxav.com/sparkle/appcast#{version.major}.xml"
     strategy :sparkle
   end
+
+  auto_updates true
 
   app "ClamXAV.app"
 

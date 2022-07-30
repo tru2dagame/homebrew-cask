@@ -1,13 +1,19 @@
 cask "hstracker" do
-  version "1.7.8"
-  sha256 "152b199825c7049435a51421d0871507cfa30507316db37aa31c2be1639e427a"
+  version "2.2.0"
+  sha256 "c607f933db297604d7bc5ea7d949b36dbe71b3eec38e393ea848cf66bcc447c1"
 
   url "https://github.com/HearthSim/HSTracker/releases/download/#{version}/HSTracker.app.zip",
       verified: "github.com/HearthSim/HSTracker/"
-  appcast "https://github.com/HearthSim/HSTracker/releases.atom"
   name "Hearthstone Deck Tracker"
   desc "Deck tracker and deck manager for Hearthstone"
   homepage "https://hsdecktracker.net/"
+
+  livecheck do
+    url :url
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+  end
+
+  depends_on macos: ">= :sierra"
 
   app "HSTracker.app"
 

@@ -1,11 +1,16 @@
 cask "vnc-server" do
-  version "6.7.2"
-  sha256 "a3170bd20a8c496ea2ae83f240ead6a1961853bb8b9c05b59a46db58781c6628"
+  version "6.10.0"
+  sha256 "2db46d9379c0c98740c1b3ee42944c494fbef0b8412866407f74bb7d7e6e6568"
 
   url "https://www.realvnc.com/download/file/vnc.files/VNC-Server-#{version}-MacOSX-x86_64.pkg"
-  appcast "https://www.realvnc.com/en/connect/download/vnc/macos/"
   name "Real VNC Server"
+  desc "Remote desktop server application"
   homepage "https://www.realvnc.com/"
+
+  livecheck do
+    url "https://www.realvnc.com/en/connect/download/vnc/macos/"
+    regex(%r{href=.*?/VNC-Server-(\d+(?:\.\d+)*)-MacOSX-x86_64\.pkg}i)
+  end
 
   pkg "VNC-Server-#{version}-MacOSX-x86_64.pkg"
 
@@ -15,9 +20,9 @@ cask "vnc-server" do
   end
 
   uninstall launchctl: [
-    "com.realvnc.vncserver",
-    "com.realvnc.vncserver.peruser",
-  ],
+              "com.realvnc.vncserver",
+              "com.realvnc.vncserver.peruser",
+            ],
             pkgutil:   [
               "com.realvnc.vncserver.pkg",
             ]

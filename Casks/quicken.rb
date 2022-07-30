@@ -1,10 +1,10 @@
 cask "quicken" do
-  version "6.0.3,600.37136.100"
-  sha256 "8d067db5496fef10c187b94e7c0fc1dd663e17133608c686f8f90351096f4aed"
+  version "6.8.3,608.44884.100"
+  sha256 "6ac78f40b9e616f9a08b118b9a0d63089468fc2639979b3d18105a1eb8d33110"
 
-  url "https://download.quicken.com/mac/Quicken/001/Release/031A96D9-EFE6-4520-8B6A-7F465DDAA3E4/Quicken-#{version.after_comma}/Quicken-#{version.after_comma}.zip"
+  url "https://download.quicken.com/mac/Quicken/001/Release/031A96D9-EFE6-4520-8B6A-7F465DDAA3E4/Quicken-#{version.csv.second}/Quicken-#{version.csv.second}.zip"
   name "Quicken"
-  desc "Personal finance mananger"
+  desc "Personal finance manager"
   homepage "https://www.quicken.com/mac"
 
   livecheck do
@@ -12,12 +12,13 @@ cask "quicken" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :el_capitan"
+  auto_updates true
+  depends_on macos: ">= :high_sierra"
 
   app "Quicken.app"
 
   zap trash: [
-    "~/Library/Preferences/com.quicken.Quicken.plist",
     "~/Library/Application Support/Quicken",
+    "~/Library/Preferences/com.quicken.Quicken.plist",
   ]
 end

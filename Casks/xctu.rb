@@ -1,12 +1,16 @@
 cask "xctu" do
-  version "40003027_AC"
-  sha256 "a8c0bf2fd8b62caa86c1ee35e7c4379d70eab04e7c868f7f6a6875a5e41ada93"
+  version "40003027_AE"
+  sha256 "549aa41bca87035df7251765404a6600c0696a260a09d6d35e8e11b783d5fa0a"
 
   url "https://ftp1.digi.com/support/utilities/#{version}.zip"
-  appcast "https://www.digi.com/support/includes/utilities.aspx?pid=3352"
   name "XCTU"
   desc "Configuration Platform for XBee/RF Solutions"
   homepage "https://www.digi.com/products/embedded-systems/digi-xbee-tools/xctu"
+
+  livecheck do
+    url "https://www.digi.com/support/includes/utilities.aspx?pid=3352"
+    regex(/(\d+[._-]\w+)\.zip/i)
+  end
 
   installer script: {
     executable: "#{staged_path}/xctu_installer.app/Contents/MacOS/installbuilder.sh",

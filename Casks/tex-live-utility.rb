@@ -1,12 +1,16 @@
 cask "tex-live-utility" do
-  version "1.40"
-  sha256 "631fc032db56fd51edc8d2c39aa8619f4cd8a6d128762665c181b3f6834bb8e9"
+  version "1.53"
+  sha256 "64caa374c9a34d0b7a513248aa42cf4c9b0dff207010ee4b4cd2fd5b56a956df"
 
-  url "https://github.com/amaxwell/tlutility/releases/download/#{version}/TeX.Live.Utility.app-#{version}.dmg"
-  appcast "https://github.com/amaxwell/tlutility/releases.atom"
+  url "https://github.com/amaxwell/tlutility/releases/download/#{version}/TeX.Live.Utility.app-#{version}.zip"
   name "TeX Live Utility"
   desc "Graphical user interface for TeX Live Manager"
   homepage "https://github.com/amaxwell/tlutility"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   auto_updates true
 
@@ -15,5 +19,8 @@ cask "tex-live-utility" do
   zap trash: [
     "~/Library/Application Support/TeX Live Utility",
     "~/Library/Caches/com.apple.helpd/SDMHelpData/Other/English/HelpSDMIndexFile/TeX Live Utility Help*",
+    "~/Library/Caches/com.googlecode.mactlmgr.tlu",
+    "~/Library/Preferences/com.googlecode.mactlmgr.tlu.plist",
+    "~/Library/Saved Application State/com.googlecode.mactlmgr.tlu.savedState",
   ]
 end

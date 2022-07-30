@@ -1,12 +1,21 @@
 cask "surge" do
-  version "4.0.2-1219-dbd08724b90aa8b444cd6d0679a245b5"
-  sha256 "69684685b0fa68fd6bfc17321bac41d77c1a65ea1bac1175894a03fc40b41635"
+  version "4.7.0,1757,0b3d1ec3c3f7067386361dd582ad964a"
+  sha256 "269def766afeb4cf1102bcee888ea28442f6dd421e5ba968b290e25246446d58"
 
-  url "https://www.nssurge.com/mac/v#{version.major}/Surge-#{version}.zip"
-  appcast "https://www.nssurge.com/mac/v#{version.major}/appcast-signed.xml"
+  url "https://dl.nssurge.com/mac/v#{version.major}/Surge-#{version.tr(",", "-")}.zip"
   name "Surge"
   desc "Network toolbox"
   homepage "https://nssurge.com/"
+
+  livecheck do
+    url "https://www.nssurge.com/mac/v#{version.major}/appcast-signed.xml"
+    strategy :sparkle do |item|
+      match = item.url.match(/[._-](\d+(?:\.\d+)+)[._-](\d+)[._-](\h+)\.zip/i)
+      next if match.blank?
+
+      "#{match[1]},#{match[2]},#{match[3]}"
+    end
+  end
 
   auto_updates true
   depends_on macos: ">= :el_capitan"

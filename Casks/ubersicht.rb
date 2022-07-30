@@ -1,15 +1,19 @@
 cask "ubersicht" do
-  version "1.6.66"
-  sha256 "d02eaec51c725053906c14a2d0a34cef3b98674b87bdd1118d0318cd07ab6a13"
+  version "1.6.72"
+  sha256 "060464069fe9d744d0f36b11950f9c918aab1a01232a53977380ae3beb4c0b8e"
 
   url "https://tracesof.net/uebersicht/releases/Uebersicht-#{version}.app.zip"
-  appcast "https://tracesof.net/uebersicht/updates.xml.rss"
   name "Übersicht"
   desc "Run commands and display their output on the desktop"
   homepage "https://tracesof.net/uebersicht/"
 
+  livecheck do
+    url :homepage
+    regex(%r{href=.*?/Uebersicht[._-]v?(\d+(?:\.\d+)+)\.app\.zip}i)
+  end
+
   auto_updates true
-  depends_on macos: ">= :yosemite"
+  depends_on macos: ">= :el_capitan"
 
   app "Übersicht.app"
 

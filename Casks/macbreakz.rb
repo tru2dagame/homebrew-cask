@@ -1,9 +1,10 @@
 cask "macbreakz" do
-  version "5.42"
-  sha256 "dd16318c25da75046e2ba84f8f509af453aa16575f7745b72d037275074285e4"
+  version "5.45"
+  sha256 "044215deb84289095c015ba55dfdba93b3f0c2002103200cf41da77e4eccadc3"
 
   url "https://www.publicspace.net/download/MacBreakZ#{version.major}.dmg"
   name "MacBreakZ"
+  desc "Ergonomic Assistant to prevent health problems"
   homepage "https://www.publicspace.net/MacBreakZ/"
 
   livecheck do
@@ -12,4 +13,6 @@ cask "macbreakz" do
   end
 
   app "MacBreakZ #{version.major}.app"
+
+  zap trash: "~/Library/Caches/com.apple.helpd/Generated/MacBreakZ Help*#{version}"
 end

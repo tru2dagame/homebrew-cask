@@ -1,19 +1,23 @@
 cask "grid" do
-  version "1.2"
-  sha256 "6145076e4d08a6204f874bb6a4de5319429645c09b3b91b809da3ad238ec2805"
+  version "1.4"
+  sha256 "46f415795003460d5da018aaaeb72317d3c6b654ebdde33c1556e6e8659f0cdc"
 
   url "https://macgrid.app/download/Grid-#{version}.dmg"
-  appcast "https://macgrid.app/appcast.xml"
   name "Grid"
   desc "Window manager"
   homepage "https://macgrid.app/"
 
+  livecheck do
+    url "https://macgrid.app/appcast.xml"
+    strategy :sparkle, &:short_version
+  end
+
   app "Grid.app"
 
   uninstall quit:      [
-    "app.macgrid.Grid",
-    "app.macgrid.GridLaunchAtLogin",
-  ],
+              "app.macgrid.Grid",
+              "app.macgrid.GridLaunchAtLogin",
+            ],
             launchctl: "app.macgrid.GridLaunchAtLogin"
 
   zap trash: [

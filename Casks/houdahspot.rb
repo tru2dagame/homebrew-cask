@@ -1,8 +1,8 @@
 cask "houdahspot" do
-  version "6.0,466"
-  sha256 "4989462868d8a74bd20f17040e0f899d9ae8899de6b3cfd8b1364cd33722d8f8"
+  version "6.2,734"
+  sha256 "9d6625562562fad82936a54f4677dee851be69632258eb55985571759db95729"
 
-  url "https://dl.houdah.com/houdahSpot/updates/cast#{version.major}_assets/HoudahSpot#{version.before_comma}.zip"
+  url "https://dl.houdah.com/houdahSpot/updates/cast#{version.major}_assets/HoudahSpot#{version.csv.first}.zip"
   name "HoudahSpot"
   desc "File searching application"
   homepage "https://www.houdah.com/houdahSpot/"
@@ -15,4 +15,16 @@ cask "houdahspot" do
   depends_on macos: ">= :mojave"
 
   app "HoudahSpot.app"
+
+  zap trash: [
+    "~/Library/Application Scripts/com.houdah.HoudahSpot4.FinderExtension",
+    "~/Library/Application Scripts/com.houdah.HoudahSpot4.HoudahSpotQuickAction",
+    "~/Library/Application Support/com.houdah.HoudahSpot4",
+    "~/Library/Caches/com.houdah.HoudahSpot4",
+    "~/Library/Containers/com.houdah.HoudahSpot4.FinderExtension",
+    "~/Library/Containers/com.houdah.HoudahSpot4.HoudahSpotQuickAction",
+    "~/Library/HTTPStorages/com.houdah.HoudahSpot4",
+    "~/Library/Mail/Bundles/HoudahSpotMailPlugin.mailbundle",
+    "~/Library/Preferences/com.houdah.HoudahSpot4.plist",
+  ]
 end

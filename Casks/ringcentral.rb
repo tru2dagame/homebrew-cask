@@ -1,14 +1,20 @@
 cask "ringcentral" do
-  version "20.4.31.2789"
+  arch = Hardware::CPU.intel? ? "" : "-arm"
+
+  version "22.2.22"
   sha256 :no_check
 
-  url "https://app.ringcentral.com/downloads/RingCentral.pkg"
-  appcast "https://app.ringcentral.com/download/latest-mac.yml",
-          must_contain: version.major_minor_patch
+  url "https://app.ringcentral.com/download/RingCentral#{arch}.pkg"
   name "RingCentral"
-  homepage "https://www.ringcentral.com/rcapp.html"
+  desc "Team messaging, video meetings, and business phone"
+  homepage "https://www.ringcentral.com/download.html"
 
-  pkg "RingCentral.pkg"
+  livecheck do
+    url "https://app.ringcentral.com/download/latest-mac.yml"
+    strategy :electron_builder
+  end
+
+  pkg "RingCentral#{arch}.pkg"
 
   uninstall delete:  "/Applications/RingCentral.app",
             quit:    "RingCentral",

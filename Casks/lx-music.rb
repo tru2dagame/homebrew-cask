@@ -1,13 +1,24 @@
 cask "lx-music" do
-  version "1.5.0"
-  sha256 "e9e96235d3db380db5ca2a295364edb6a7f740f4a512aa6a2b02932b2370232d"
+  arch = Hardware::CPU.intel? ? "" : "-arm64"
 
-  url "https://github.com/lyswhut/lx-music-desktop/releases/download/v#{version}/lx-music-desktop-#{version}.dmg"
-  appcast "https://github.com/lyswhut/lx-music-desktop/releases.atom"
+  version "1.22.1"
+
+  if Hardware::CPU.intel?
+    sha256 "e74158b77f2da4a9b6e0530f7fa7a9f34c66b479922d8708eb06fb475dd3a218"
+  else
+    sha256 "462ffb39ae422debc1d23b70f0ea123dc995627d4a3a7b526d0e0d07511ea3fd"
+  end
+
+  url "https://github.com/lyswhut/lx-music-desktop/releases/download/v#{version}/lx-music-desktop-#{version}#{arch}.dmg"
   name "LX Music Assistant Desktop Edition"
   name "洛雪音乐助手桌面版"
   desc "Music app base on Electron & Vue"
   homepage "https://github.com/lyswhut/lx-music-desktop/"
 
   app "lx-music-desktop.app"
+
+  zap trash: [
+    "~/Library/Application Support/lx-music-desktop",
+    "~/Library/Logs/lx-music-desktop",
+  ]
 end

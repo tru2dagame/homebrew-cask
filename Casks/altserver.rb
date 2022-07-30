@@ -1,10 +1,10 @@
 cask "altserver" do
-  version "1.4.2,41"
-  sha256 "814e573e8275e1d608f4b63f85fd9292451c614e565ab6b61156693eaf9b7967"
+  version "1.5.1,70"
+  sha256 "af478c958e3bf9346b59a4a2af4b3120ef0d02fa653b14dab13b7a7ec56d80de"
 
-  url "https://f000.backblazeb2.com/file/altstore/altserver/#{version.before_comma.dots_to_underscores}.zip",
-      verified: "f000.backblazeb2.com/file/"
+  url "https://cdn.altstore.io/file/altstore/altserver/#{version.csv.first.dots_to_underscores}.zip"
   name "AltServer"
+  desc "iOS App Store alternative"
   homepage "https://altstore.io/"
 
   livecheck do
@@ -12,6 +12,7 @@ cask "altserver" do
     strategy :sparkle
   end
 
+  auto_updates true
   depends_on macos: ">= :mojave"
 
   app "AltServer.app"

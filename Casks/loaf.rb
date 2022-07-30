@@ -1,18 +1,19 @@
 cask "loaf" do
-  version "1.1.7"
-  sha256 "f257b41d8cea48fd5674b8fdd165898dfe31f2dab69e6cc0bfb70afdd0dfd86d"
+  version "1.1.21"
+  sha256 "ea98cca85bd80700f9be47a67497da7049c794f218953d41f2ab56fcc2de6312"
 
   url "https://github.com/philipardeljan/getloaf/releases/download/v#{version}/loaf.dmg",
       verified: "github.com/philipardeljan/getloaf/"
-  appcast "https://github.com/philipardeljan/getmotion/releases.atom"
   name "Loaf"
   desc "Animated icon library"
-  homepage "https://www.getmotion.io/"
+  homepage "https://getloaf.io/"
 
   app "Loaf.app"
 
   zap trash: [
-    "~/Library/Application Support/Motion (beta)",
-    "~/Library/Preferences/com.motionicons.studio.plist",
+    "~/Library/Application Support/Loaf",
+    "~/Library/Logs/Loaf",
+    "~/Library/Preferences/com.loaf.studio.plist",
+    "~/Library/Saved Application State/com.loaf.studio.savedState",
   ]
 end

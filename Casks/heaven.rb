@@ -7,6 +7,11 @@ cask "heaven" do
   desc "Performance and stability test for PC hardware"
   homepage "https://benchmark.unigine.com/heaven"
 
+  livecheck do
+    url :homepage
+    regex(%r{href=.*?/Unigine[._-]Heaven[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
+  end
+
   app "Heaven.app"
 
   zap trash: [

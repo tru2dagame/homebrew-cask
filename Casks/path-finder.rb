@@ -1,11 +1,12 @@
 cask "path-finder" do
-  version "10.0.1,2084"
-  sha256 "2c7dfd4722f129ec9bc3315617638f28ae2bc31e57d8d9a1f84789e31305a1f1"
+  version "2136"
+  sha256 :no_check
 
-  url "https://get.cocoatech.com/PF#{version.major}.dmg"
+  url "https://get.cocoatech.com/PathFinder.dmg",
+      verified: "get.cocoatech.com/"
   name "Path Finder"
   desc "File manager"
-  homepage "https://cocoatech.com/"
+  homepage "https://www.cocoatech.io/"
 
   livecheck do
     url "https://get.cocoatech.com/releasecast.xml"
@@ -13,11 +14,12 @@ cask "path-finder" do
   end
 
   auto_updates true
+  depends_on macos: ">= :high_sierra"
 
   app "Path Finder.app"
 
   zap trash: [
-    "~/Library/Preferences/com.cocoatech.PathFinder.plist",
     "~/Library/Application Support/Path Finder",
+    "~/Library/Preferences/com.cocoatech.PathFinder.plist",
   ]
 end

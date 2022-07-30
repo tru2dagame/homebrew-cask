@@ -1,22 +1,38 @@
 cask "intellij-idea-ce" do
-  version "2020.3.1,203.6682.168"
-  sha256 "8ec4c857c1d7c65f7fc9a0db21ac4e282f98d29d9b4c86bb00ff410504855062"
+  arch = Hardware::CPU.intel? ? "" : "-aarch64"
 
-  url "https://download.jetbrains.com/idea/ideaIC-#{version.before_comma}.dmg"
-  appcast "https://data.services.jetbrains.com/products/releases?code=IIC&latest=true&type=release"
+  version "2022.2,222.3345.118"
+
+  if Hardware::CPU.intel?
+    sha256 "43d52e7e1008944c9ea1a47fa16091d4e4a39906bbc10ebabd425604f199d68d"
+  else
+    sha256 "0c53734c0a0776dbf7c28663c078d94de9162738bf8e61ad7044fca496a936cf"
+  end
+
+  url "https://download.jetbrains.com/idea/ideaIC-#{version.csv.first}#{arch}.dmg"
   name "IntelliJ IDEA Community Edition"
   name "IntelliJ IDEA CE"
   desc "IDE for Java development - community edition"
   homepage "https://www.jetbrains.com/idea/"
 
+  livecheck do
+    url "https://data.services.jetbrains.com/products/releases?code=IIC&latest=true&type=release"
+    strategy :page_match do |page|
+      JSON.parse(page)["IIC"].map do |release|
+        "#{release["version"]},#{release["build"]}"
+      end
+    end
+  end
+
   auto_updates true
   conflicts_with cask: "homebrew/cask-versions/intellij-idea-ce19"
+  depends_on macos: ">= :high_sierra"
 
   app "IntelliJ IDEA CE.app"
 
   uninstall_postflight do
     ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "idea") }.each do |path|
-      if File.exist?(path) &&
+      if File.readable?(path) &&
          File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
         File.delete(path)
       end

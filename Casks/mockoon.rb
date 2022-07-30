@@ -1,15 +1,26 @@
 cask "mockoon" do
-  version "1.11.0"
-  sha256 "4b9eac48eb75d176f92eec1101147135d2a7eadd771c81fca715537ac2f0d43c"
+  version "1.19.0"
+  sha256 "563478a999649d6815e516740d3277dff27365fe062f3e590aac21842eb6bb76"
 
-  url "https://github.com/mockoon/mockoon/releases/download/v#{version}/mockoon.setup.#{version}.dmg",
+  url "https://github.com/mockoon/mockoon/releases/download/v#{version}/mockoon.setup.#{version}.universal.dmg",
       verified: "github.com/mockoon/mockoon/"
-  appcast "https://github.com/mockoon/mockoon/releases.atom"
   name "Mockoon"
-  desc "Utility to run mock APIs locally"
+  desc "Create mock APIs in seconds"
   homepage "https://mockoon.com/"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   auto_updates true
 
   app "Mockoon.app"
+
+  zap trash: [
+    "~/Library/Application Support/mockoon",
+    "~/Library/Logs/Mockoon",
+    "~/Library/Preferences/com.mockoon.app.plist",
+    "~/Library/Saved Application State/com.mockoon.app.savedState",
+  ]
 end

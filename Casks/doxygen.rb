@@ -1,11 +1,16 @@
 cask "doxygen" do
-  version "1.8.20"
-  sha256 "06c6632f1ac7242a80d148af4867007b0e458fc9b4829b84b4a970ce7c4d3677"
+  version "1.9.4"
+  sha256 "8fca47c9b44de386878d4e65674f70731ceb1ddfb8504546b9a8874ec13effc4"
 
   url "https://doxygen.nl/files/Doxygen-#{version}.dmg"
-  appcast "https://www.doxygen.nl/download.html"
   name "Doxygen"
+  desc "Generate documentation from source code"
   homepage "https://www.doxygen.nl/"
+
+  livecheck do
+    url "https://www.doxygen.nl/download.html"
+    regex(%r{href=.*?/Doxygen-(\d+(?:\.\d+)+)\.dmg}i)
+  end
 
   app "Doxygen.app"
 end

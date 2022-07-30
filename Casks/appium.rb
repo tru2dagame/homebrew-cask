@@ -1,14 +1,20 @@
 cask "appium" do
-  version "1.19.1"
-  sha256 "de5a2efdc200a39f8bbe5d60d90106e4bb041ef4d4cc2e4f6fe1625b720c7e63"
+  version "1.22.3-4"
+  sha256 "907265e27ba854f4ec66c2fea55ac2f8756264783d69b000d447b841d407e753"
 
-  url "https://github.com/appium/appium-desktop/releases/download/v#{version}/Appium-mac-#{version}.dmg",
+  url "https://github.com/appium/appium-desktop/releases/download/v#{version}/Appium-Server-GUI-mac-#{version}.dmg",
       verified: "github.com/appium/appium-desktop/"
-  appcast "https://github.com/appium/appium-desktop/releases.atom"
-  name "Appium Desktop"
+  name "Appium Server Desktop GUI"
+  desc "Graphical frontend to Appium automation server"
   homepage "https://appium.io/"
 
-  app "Appium.app"
+  livecheck do
+    url :url
+    strategy :github_latest
+    regex(%r{href=.*?/tag/v?(\d+(?:[.-]\d+)+)["' >]}i)
+  end
+
+  app "Appium Server GUI.app"
 
   zap trash: [
     "~/Library/Application Support/appium-desktop",

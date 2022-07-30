@@ -1,16 +1,25 @@
 cask "metasploit" do
-  version "6.0.24,20201229112849"
-  sha256 "a6a0f0bb02609e1b6ac9c517215ec5aa3041c77c5e13f0aab2c6517a5c5d804c"
+  version "6.2.10,20220729102916"
+  sha256 "d189cdfcb4aff02a0c394c7b04ae24d72b94cc7b811adb4c42d217553153c091"
 
-  url "https://osx.metasploit.com/metasploit-framework-#{version.before_comma}%2B#{version.after_comma}-1rapid7-1.pkg"
-  appcast "https://osx.metasploit.com/LATEST"
+  url "https://osx.metasploit.com/metasploit-framework-#{version.csv.first}%2B#{version.csv.second}-1rapid7-1.x86_64.pkg"
   name "Metasploit Framework"
   desc "Penetration testing framework"
   homepage "https://www.metasploit.com/"
 
+  livecheck do
+    url "https://osx.metasploit.com/LATEST"
+    strategy :page_match do |page|
+      match = page.match(/metasploit-framework-(\d+(?:\.\d+)+)\+(\d+)-1rapid7-1\.x86_64\.pkg/i)
+      next if match.blank?
+
+      "#{match[1]},#{match[2]}"
+    end
+  end
+
   depends_on formula: "nmap"
 
-  pkg "metasploit-framework-#{version.before_comma}+#{version.after_comma}-1rapid7-1.pkg"
+  pkg "metasploit-framework-#{version.csv.first}+#{version.csv.second}-1rapid7-1.x86_64.pkg"
   binary "/opt/metasploit-framework/bin/msfbinscan"
   binary "/opt/metasploit-framework/bin/msfconsole"
   binary "/opt/metasploit-framework/bin/msfd"
@@ -24,10 +33,10 @@ cask "metasploit" do
   binary "/opt/metasploit-framework/bin/msfvenom"
 
   uninstall script: {
-    executable: "/opt/metasploit-framework/bin/msfremove",
-    input:      ["y"],
-    sudo:       true,
-  },
+              executable: "/opt/metasploit-framework/bin/msfremove",
+              input:      ["y"],
+              sudo:       true,
+            },
             rmdir:  "/opt/metasploit-framework"
 
   zap trash: "~/.msf4"

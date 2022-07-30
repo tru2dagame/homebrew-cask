@@ -1,12 +1,19 @@
 cask "pitch" do
-  version "1.9.1"
-  sha256 "1cd4916f2ed8ac210daa4557b645f3cd78f97aa72634d66283fdd3f21d269d19"
+  version "1.85.0,stable.4,4474536"
+  sha256 "8a79f835d88ea0b6d3cb5e512dc7deb4f4654feefa5864a0199ee3eed1d887f8"
 
-  url "https://desktop-app-builds.pitch.com/Pitch-#{version}.dmg"
-  appcast "https://desktop-app-builds.pitch.com/latest-mac.yml"
+  url "https://desktop-app-builds.pitch.com/Pitch-#{version.csv.first}-#{version.csv.second}-ci#{version.csv.third}.dmg"
   name "Pitch"
   desc "Collaborative presentation software"
   homepage "https://pitch.com/"
+
+  livecheck do
+    url "https://desktop-app-builds.pitch.com/latest-mac.yml"
+    regex(/Pitch[._-]v?(\d+(?:\.\d+)+)-([^-]+)-ci(\d+)\.dmg/i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| "#{match.first},#{match.second},#{match.third}" }
+    end
+  end
 
   app "Pitch.app"
 

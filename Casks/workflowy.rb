@@ -1,10 +1,9 @@
 cask "workflowy" do
-  version "1.3.5-13919"
-  sha256 "7b1235132add08edce02fb8a8621b75220550b708825e4b9072fd98d3944cddd"
+  version "1.4.848"
+  sha256 "7b30052a8439af9f34c6120e4a24cf19c326e4abc33da00f30ace6b4a770c24a"
 
   url "https://github.com/workflowy/desktop/releases/download/v#{version}/WorkFlowy.zip",
       verified: "github.com/workflowy/desktop/"
-  appcast "https://github.com/workflowy/desktop/releases.atom"
   name "WorkFlowy"
   desc "Notetaking tool"
   homepage "https://workflowy.com/downloads/mac/"

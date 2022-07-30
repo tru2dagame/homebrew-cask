@@ -1,12 +1,16 @@
 cask "cityofzion-neon" do
-  version "2.6.1"
-  sha256 "260f136bd5ebad053e5454a97fa35fb848b610de658ea7549fdf5719fac4c29f"
+  version "2.12.9"
+  sha256 "c938f283f3967ab36826fde6162bf4d46b6e2fc00024bbf08f31c99061c9e242"
 
   url "https://github.com/CityOfZion/neon-wallet/releases/download/v#{version}/Neon.#{version}.dmg"
-  appcast "https://github.com/CityOfZion/neon-wallet/releases.atom"
   name "Neon Wallet"
   desc "Light wallet for the NEO blockchain"
   homepage "https://github.com/CityOfZion/neon-wallet"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   app "Neon.app"
 

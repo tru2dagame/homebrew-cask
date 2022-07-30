@@ -1,5 +1,5 @@
 cask "avast-secure-browser" do
-  version "87.0.401.89"
+  version "103.0.2435.114"
   sha256 :no_check
 
   url "https://cdn-download.avastbrowser.com/AvastSecureBrowserSetup.pkg",
@@ -8,19 +8,24 @@ cask "avast-secure-browser" do
   desc "Web browser focusing on privacy"
   homepage "https://www.avast.com/secure-browser#mac"
 
+  livecheck do
+    url :url
+    strategy :extract_plist
+  end
+
   pkg "AvastSecureBrowserSetup.pkg"
 
   uninstall quit:    "com.avast.browser",
             pkgutil: "com.avast.browser"
 
   zap trash: [
-    "~/Library/Application Support/AVAST Software/Browser",
-    "~/Library/Caches/AVAST Software/Browser",
-    "~/Library/Caches/com.avast.browser",
-    "~/Library/Preferences/com.avast.AvastSecureBrowser.plist",
-    "~/Library/Preferences/com.avast.browser.plist",
-    "~/Library/Saved Application State/com.avast.browser.savedState",
-  ],
+        "~/Library/Application Support/AVAST Software/Browser",
+        "~/Library/Caches/AVAST Software/Browser",
+        "~/Library/Caches/com.avast.browser",
+        "~/Library/Preferences/com.avast.AvastSecureBrowser.plist",
+        "~/Library/Preferences/com.avast.browser.plist",
+        "~/Library/Saved Application State/com.avast.browser.savedState",
+      ],
       rmdir: [
         "~/Library/Application Support/AVAST Software",
         "~/Library/Caches/AVAST Software",

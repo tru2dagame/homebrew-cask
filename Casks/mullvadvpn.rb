@@ -1,18 +1,35 @@
 cask "mullvadvpn" do
-  version "2020.7"
-  sha256 "7ec7729557afe6291731181173802761596d70e4fe93a4608809ed2f9320331c"
+  version "2022.2"
+  sha256 "b6fb26dee08dbb8d9c4036c58e8f6bc45533ee6d996911d0c61b37e01dad6b1e"
 
   url "https://github.com/mullvad/mullvadvpn-app/releases/download/#{version}/MullvadVPN-#{version}.pkg",
       verified: "github.com/mullvad/mullvadvpn-app/"
-  appcast "https://github.com/mullvad/mullvadvpn-app/releases.atom"
   name "Mullvad VPN"
   desc "VPN client"
   homepage "https://mullvad.net/"
 
-  conflicts_with cask: "mullvadvpn-beta"
+  livecheck do
+    url "https://mullvad.net/download/app/pkg/latest/"
+    strategy :header_match
+  end
+
+  conflicts_with cask: "homebrew/cask-versions/mullvadvpn-beta"
+  depends_on macos: ">= :mojave"
 
   pkg "MullvadVPN-#{version}.pkg"
 
   uninstall pkgutil:   "net.mullvad.vpn",
-            launchctl: "net.mullvad.daemon"
+            launchctl: "net.mullvad.daemon",
+            delete:    [
+              "/Library/Caches/mullvad-vpn",
+              "/Library/LaunchDaemons/net.mullvad.daemon.plist",
+              "/var/log/mullvad-vpn",
+            ]
+
+  zap trash: [
+    "/etc/mullvad-vpn",
+    "~/Library/Application Support/Mullvad VPN",
+    "~/Library/Logs/Mullvad VPN",
+    "~/Library/Preferences/net.mullvad.vpn.plist",
+  ]
 end

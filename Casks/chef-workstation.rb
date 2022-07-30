@@ -1,16 +1,27 @@
 cask "chef-workstation" do
-  version "20.12.205"
-  sha256 "0ceb90162e35858ec35c987a3c00a8d1d557e490fdd4fb4dcbf13ab111488db2"
+  arch, macos_version = Hardware::CPU.intel? ? ["x86_64", "10.15"] : ["arm64", "11"]
 
-  url "https://packages.chef.io/files/stable/chef-workstation/#{version}/mac_os_x/10.15/chef-workstation-#{version}-1.dmg"
-  appcast "https://omnitruck.chef.io/stable/chef-workstation/metadata?p=mac_os_x&pv=10.15&m=x86_64&v=latest"
+  version "22.7.1006"
+
+  if Hardware::CPU.intel?
+    sha256 "6706e3c22248b1a0727f382e26c115d808457f04677f97a09432bfd77d2e5d92"
+  else
+    sha256 "f01815513f0e820dc036cabf1bef04b4beca37b1869b3a3e8b206942b6d0469d"
+  end
+
+  url "https://packages.chef.io/files/stable/chef-workstation/#{version}/mac_os_x/#{macos_version}/chef-workstation-#{version}-1.#{arch}.dmg"
   name "Chef Workstation"
   desc "All-in-one installer for the tools you need to manage your Chef infrastructure"
   homepage "https://docs.chef.io/workstation/"
 
-  depends_on macos: ">= :high_sierra"
+  livecheck do
+    url "https://omnitruck.chef.io/stable/chef-workstation/metadata?p=mac_os_x&pv=#{macos_version}&m=#{arch}&v=latest"
+    regex(/version\s*(\d+(?:\.\d+)+)/i)
+  end
 
-  pkg "chef-workstation-#{version}-1.pkg"
+  depends_on macos: ">= :catalina"
+
+  pkg "chef-workstation-#{version}-1.#{arch}.pkg"
 
   uninstall quit:      "sh.chef.chef-workstation",
             pkgutil:   "com.getchef.pkg.chef-workstation",

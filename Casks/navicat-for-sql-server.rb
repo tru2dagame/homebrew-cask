@@ -1,11 +1,17 @@
 cask "navicat-for-sql-server" do
-  version "15.0.24"
-  sha256 "90ceb02d117db62dc4e6c59d7af7fd6c5bfaba995fdd6970cdaed64bd21cea3b"
+  version "16.1.0"
+  sha256 :no_check
 
-  url "http://download.navicat.com/download/navicat#{version.major_minor.no_dots}_sqlserver_en.dmg"
-  appcast "https://updater.navicat.com/mac/navicat_updates.php?appName=Navicat%20for%20SQL%20Server&appLang=en"
+  url "https://download.navicat.com/download/navicat#{version.major_minor.no_dots}_sqlserver_en.dmg"
   name "Navicat for SQL Server"
+  desc "Database administration and development tool for SQL-server"
   homepage "https://www.navicat.com/products/navicat-for-sqlserver"
+
+  livecheck do
+    cask "navicat-premium"
+  end
+
+  depends_on macos: ">= :mojave"
 
   app "Navicat For SQL Server.app"
 end

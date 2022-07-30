@@ -1,9 +1,8 @@
 cask "ariang" do
-  version "1.1.7"
-  sha256 "740a0ac1841928f692c8d418d81ede4462f0cdca201eacce0ae3aa6619251815"
+  version "1.2.4"
+  sha256 "717621c746c89caf8178f752efd71aaddd7f0f599c2f3128b0bec26bcc277db7"
 
-  url "https://github.com/mayswind/AriaNg-Native/releases/download/#{version}/AriaNg_Native-#{version}-macOS.dmg"
-  appcast "https://github.com/mayswind/AriaNg-Native/releases.atom"
+  url "https://github.com/mayswind/AriaNg-Native/releases/download/#{version}/AriaNg_Native-#{version}-macOS-x64.dmg"
   name "AriaNg Native"
   desc "Better aria2 desktop frontend than AriaNg"
   homepage "https://github.com/mayswind/AriaNg-Native"

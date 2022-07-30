@@ -1,61 +1,26 @@
 cask "ibm-cloud-cli" do
-  version "1.3.0"
-  sha256 "5ab4cee0c40d59b97373f4f9734da532419dc0e8c6a1e0c3d74382226e3a8a32"
+  version "2.9.0"
+  sha256 "ed61c1c90d8b4f14703486f0378dc47806e7ed69b6b7b085a9d65e249b1d926d"
 
   url "https://download.clis.cloud.ibm.com/ibm-cloud-cli/#{version}/IBM_Cloud_CLI_#{version}.pkg"
-  appcast "https://github.com/IBM-Cloud/ibm-cloud-cli-release/releases.atom"
   name "IBM Cloud CLI"
   desc "Command-line API client"
   homepage "https://cloud.ibm.com/docs/cli/index.html"
 
+  livecheck do
+    url "https://github.com/IBM-Cloud/ibm-cloud-cli-release"
+  end
+
   depends_on cask: "docker"
-  depends_on formula: "kubectl"
-  depends_on formula: "kubernetes-helm"
+  depends_on formula: "helm"
+  depends_on formula: "kubernetes-cli"
 
   pkg "IBM_Cloud_CLI_#{version}.pkg"
-
-  uninstall_postflight do
-    if File.exist?("/etc/profile")
-      system_command "/usr/bin/sed",
-                     args: [
-                       "-E",
-                       "-i", ".bluemix_uninstall_bak",
-                       "-e", "/^### Added by IBM Cloud CLI$/d",
-                       "-e", '/^source \/usr\/local\/Bluemix\/bx\/bash_autocomplete$/d',
-                       "/etc/profile"
-                     ],
-                     sudo: true
-    end
-
-    if File.exist?("#{ENV["HOME"]}/.bashrc")
-      system_command "/usr/bin/sed",
-                     args: [
-                       "-E",
-                       "-i", ".bluemix_uninstall_bak",
-                       "-e", "/^### Added by IBM Cloud CLI$/d",
-                       "-e", '/^source \/usr\/local\/Bluemix\/bx\/bash_autocomplete$/d',
-                       "#{ENV["HOME"]}/.bashrc"
-                     ]
-    end
-
-    if File.exist?("#{ENV["HOME"]}/.zshrc")
-      system_command "/usr/bin/sed",
-                     args: [
-                       "-E",
-                       "-i", ".bluemix_uninstall_bak",
-                       "-e", "/^### Added by IBM Cloud CLI$/d",
-                       "-e", '/^source \/usr\/local\/Bluemix\/bx\/zsh_autocomplete$/d',
-                       "#{ENV["HOME"]}/.zshrc"
-                     ]
-    end
-  end
 
   uninstall pkgutil: "com.ibm.cloud.cli",
             delete:  [
               "/usr/local/bin/bluemix",
               "/usr/local/bin/bx",
-              "/usr/local/bin/bluemix-analytics",
-              "/usr/local/Bluemix",
               "/usr/local/ibmcloud",
             ]
 

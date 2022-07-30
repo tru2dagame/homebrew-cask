@@ -1,14 +1,19 @@
 cask "multipass" do
-  version "1.5.0"
-  sha256 "1085217279fbb55f3a2c528deaba7c19b60073ae715c39dc83273262fea1a117"
+  version "1.10.1"
+  sha256 "fe589d40ee8a4970a7fa1d2c78627c8eb538797401bd47309fa8d3ea5f922f71"
 
-  url "https://github.com/CanonicalLtd/multipass/releases/download/v#{version}/multipass-#{version}+mac-Darwin.pkg"
-  appcast "https://github.com/CanonicalLtd/multipass/releases.atom"
+  url "https://github.com/canonical/multipass/releases/download/v#{version}/multipass-#{version}+mac-Darwin.pkg"
   name "Multipass"
   desc "Orchestrates virtual Ubuntu instances"
-  homepage "https://github.com/CanonicalLtd/multipass/"
+  homepage "https://github.com/canonical/multipass/"
 
-  depends_on macos: ">= :sierra"
+  livecheck do
+    url "https://github.com/canonical/multipass/releases/"
+    strategy :page_match
+    regex(/multipass[._-]?(\d+(?:\.\d+)*)\+mac[._-]?Darwin\.pkg/i)
+  end
+
+  depends_on macos: ">= :mojave"
 
   pkg "multipass-#{version}+mac-Darwin.pkg"
 
@@ -16,18 +21,15 @@ cask "multipass" do
             pkgutil:   "com.canonical.multipass.*",
             delete:    [
               "/Applications/Multipass.app",
+              "/Library/Application Support/com.canonical.multipass",
+              "/Library/Logs/Multipass",
               "/usr/local/bin/multipass",
               "/usr/local/etc/bash_completion.d/multipass",
-              "/var/root/Library/Caches/multipassd",
-              "/Library/Application Support/com.canonical.multipass",
             ]
 
   zap trash: [
     "~/Library/Application Support/multipass",
     "~/Library/Application Support/multipass-gui",
     "~/Library/Preferences/multipass",
-    "/var/root/Library/Application Support/multipassd",
-    "/var/root/Library/Preferences/multipassd",
-    "/Library/Logs/Multipass",
   ]
 end

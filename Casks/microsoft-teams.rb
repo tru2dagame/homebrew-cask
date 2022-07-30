@@ -1,9 +1,11 @@
 cask "microsoft-teams" do
-  version "1.3.00.28778"
-  sha256 "b9fe38e7ad313da3773f164358e99e8fbfa084cde8750b13b002777a14501be9"
+  version "1.5.00.17261"
+  sha256 "5ca56404d36418bb40cb3b9fdb8f2c8286268009bd99e72d4fe555dd0bda3ab8"
 
-  url "https://statics.teams.microsoft.com/production-osx/#{version}/Teams_osx.pkg"
+  url "https://statics.teams.cdn.office.net/production-osx/#{version}/Teams_osx.pkg",
+      verified: "statics.teams.cdn.office.net/production-osx/"
   name "Microsoft Teams"
+  desc "Meet, chat, call, and collaborate in just one place"
   homepage "https://teams.microsoft.com/downloads"
 
   livecheck do
@@ -15,18 +17,26 @@ cask "microsoft-teams" do
 
   pkg "Teams_osx.pkg"
 
-  uninstall pkgutil:   "com.microsoft.teams",
-            launchctl: "com.microsoft.teams.TeamsUpdaterDaemon"
+  uninstall pkgutil:   [
+              "com.microsoft.MSTeamsAudioDevice",
+              "com.microsoft.teams",
+            ],
+            launchctl: "com.microsoft.teams.TeamsUpdaterDaemon",
+            delete:    [
+              "/Library/Logs/Microsoft/Teams",
+              "/Library/Preferences/com.microsoft.teams.plist",
+            ]
 
   zap trash: [
-    "/Library/Logs/Microsoft/Teams",
-    "/Library/Preferences/com.microsoft.teams.plist",
-    "~/Library/Application Support/Microsoft/Teams",
-    "~/Library/Application Support/com.microsoft.teams",
-    "~/Library/Caches/com.microsoft.teams",
-    "~/Library/Cookies/com.microsoft.teams.binarycookies",
-    "~/Library/Logs/Microsoft Teams",
-    "~/Library/Preferences/com.microsoft.teams.plist",
-    "~/Library/Saved Application State/com.microsoft.teams.savedState",
-  ]
+        "~/Library/Application Support/com.microsoft.teams",
+        "~/Library/Application Support/Microsoft/Teams",
+        "~/Library/Application Support/Teams",
+        "~/Library/Caches/com.microsoft.teams",
+        "~/Library/Cookies/com.microsoft.teams.binarycookies",
+        "~/Library/Logs/Microsoft Teams",
+        "~/Library/Preferences/com.microsoft.teams.plist",
+        "~/Library/Saved Application State/com.microsoft.teams.savedState",
+        "~/Library/WebKit/com.microsoft.teams",
+      ],
+      rmdir: "~/Library/Application Support/Microsoft"
 end

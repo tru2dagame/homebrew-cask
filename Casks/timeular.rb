@@ -1,12 +1,17 @@
 cask "timeular" do
-  version "3.7.0"
-  sha256 "581b75b6bcdfdd0a40166eda5c9e497b5464103203c9c766648cd9261392b404"
+  version "5.0.1"
+  sha256 "11dcbced66f47522299bacfeb00250f126eff954af64df67f9fe547df8b00fec"
 
   url "https://timeular-desktop-packages.s3.amazonaws.com/mac/production/Timeular-#{version}.dmg",
       verified: "timeular-desktop-packages.s3.amazonaws.com/"
-  appcast "https://timeular-desktop-packages.s3.amazonaws.com/mac/production/latest-mac.yml"
   name "Timeular"
+  desc "Time tracking aided by a physical device"
   homepage "https://timeular.com/"
+
+  livecheck do
+    url "https://timeular-desktop-packages.s3.amazonaws.com/mac/production/latest-mac.yml"
+    strategy :electron_builder
+  end
 
   auto_updates true
 

@@ -4,9 +4,14 @@ cask "elasticwolf" do
 
   url "https://s3-us-gov-west-1.amazonaws.com/elasticwolf/ElasticWolf-osx-#{version}.zip",
       verified: "s3-us-gov-west-1.amazonaws.com/elasticwolf/"
-  appcast "https://aws.amazon.com/tools/aws-elasticwolf-client-console/"
   name "AWS ElasticWolf Client Console"
+  desc "Manage Amazon Web Services (AWS) cloud resources"
   homepage "https://aws.amazon.com/tools/aws-elasticwolf-client-console/"
+
+  livecheck do
+    url :homepage
+    regex(%r{href=.*?/ElasticWolf[._-]osx[._-]v?(\d+(?:\.\d+)+)\.zip}i)
+  end
 
   app "ElasticWolf.app"
 end

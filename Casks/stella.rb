@@ -1,10 +1,9 @@
 cask "stella" do
-  version "6.4"
-  sha256 "dfd9288cfff0cc152cbc1aaebe36805b0b8ce7d1dd4c3cac9ca1b1f44cc1d540"
+  version "6.7"
+  sha256 "c4dbe867738c244d0f00e4b13b432dca305559fc36ef1614f749291c805e5003"
 
   url "https://github.com/stella-emu/stella/releases/download/#{version}/Stella-#{version}-macos.dmg",
       verified: "github.com/stella-emu/stella/"
-  appcast "https://github.com/stella-emu/stella/releases.atom"
   name "Stella"
   desc "Multi-platform Atari 2600 Emulator"
   homepage "https://stella-emu.github.io/"

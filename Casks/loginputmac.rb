@@ -1,10 +1,11 @@
 cask "loginputmac" do
-  version "2.4.1,23130"
-  sha256 "e1aab3f3d9edeab525ea7e60ecfeddfeab5ba666fac4a7caf1c4ad13351125d9"
+  version "2.5.7,24262"
+  sha256 "97b42e001112bec4b4a89948aa48669ec8b6a2b676eb4200c7339298e9317287"
 
-  url "https://loginput-mac2.content-delivery.top/loginputmac#{version.major}_latest.pkg",
-      verified: "loginput-mac2.content-delivery.top/"
+  url "https://loginput-mac2.totest.top/loginputmac#{version.major}_latest.pkg",
+      verified: "loginput-mac2.totest.top/"
   name "LoginputMac"
+  desc "Chinese input method"
   homepage "https://im.logcg.com/loginputmac#{version.major}"
 
   livecheck do

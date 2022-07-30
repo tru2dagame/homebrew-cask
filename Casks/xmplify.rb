@@ -1,9 +1,10 @@
 cask "xmplify" do
-  version "1.9.6"
-  sha256 "676a656e158fd66cfd483923cef486ddde1f938141590a2c73500088ca5af91f"
+  version "1.10.4"
+  sha256 "61f4aada6da960b711463222bab8b5a48ea0c8ae5cf320f874a77dea6acf55cb"
 
   url "http://xmplifyapp.com/releases/Xmplify-#{version}.dmg"
   name "Xmplify"
+  desc "XML editor"
   homepage "http://xmplifyapp.com/"
 
   livecheck do
@@ -11,16 +12,16 @@ cask "xmplify" do
     strategy :sparkle
   end
 
+  depends_on macos: ">= :sierra"
+
   app "Xmplify.app"
 
   uninstall quit: "au.com.moso.Xmplify"
 
   zap trash: [
     "~/Library/Caches/au.com.moso.Xmplify",
-    "~/Library/Logs/Xmplify.log",
-    "~/Library/Logs/Xmplify Quick Look Generator.log",
-    "~/Library/Preferences/au.com.moso.Xmplify.plist",
-    "~/Library/Preferences/au.com.moso.Xmplify.LSSharedFileList.plist",
+    "~/Library/Logs/Xmplify*.log",
+    "~/Library/Preferences/au.com.moso.Xmplify*.plist",
     "~/Library/Saved Application State/au.com.moso.Xmplify.savedState",
   ]
 end

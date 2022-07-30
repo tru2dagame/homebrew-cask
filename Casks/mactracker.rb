@@ -1,6 +1,6 @@
 cask "mactracker" do
-  version "7.10.2"
-  sha256 "b0f9200c5fb43999fcc0e0138ccddf5ee24cbcfae6e25dcbc5a5ebb8a8ec1646"
+  version "7.11.4"
+  sha256 "0e5d5cf40b1f1a74c33204631a0baf65b930e9c383944eb8c6519ef2079d1a05"
 
   url "https://www.mactracker.ca/downloads/Mactracker_#{version}.zip"
   name "Mactracker"
@@ -15,4 +15,11 @@ cask "mactracker" do
   auto_updates true
 
   app "Mactracker.app"
+
+  zap trash: [
+    "~/Library/Application Support/com.mactrackerapp.Mactracker",
+    "~/Library/Caches/com.mactrackerapp.Mactracker",
+    "~/Library/Preferences/com.mactrackerapp.Mactracker.plist",
+    "~/Library/Saved Application State/com.mactrackerapp.Mactracker.savedState",
+  ]
 end

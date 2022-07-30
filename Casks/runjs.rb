@@ -1,15 +1,20 @@
 cask "runjs" do
-  version "1.12.2"
-  sha256 "3ad31592e79c97c5f78b057b43a5b57380abd23b82d353a055bb0d7b34f32eea"
+  version "2.5.1"
+  sha256 "1172c543146e765aaabd42f97c00d6eeb2706a3e88450199f39042baa0199b0d"
 
-  url "https://github.com/lukehaas/runjs/releases/download/v#{version}/RunJS-#{version}.dmg",
-      verified: "github.com/lukehaas/runjs/"
-  appcast "https://github.com/lukehaas/runjs/releases.atom"
+  url "https://github.com/lukehaas/RunJS/releases/download/v#{version}/RunJS-#{version}-universal.dmg",
+      verified: "github.com/lukehaas/RunJS/"
   name "RunJS"
   desc "JavaScript playground that auto-evaluates as code is typed"
-  homepage "https://projects.lukehaas.me/runjs/"
+  homepage "https://runjs.app/"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   auto_updates true
+  depends_on macos: ">= :el_capitan"
 
   app "RunJS.app"
 

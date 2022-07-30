@@ -1,8 +1,8 @@
 cask "screenflow" do
-  version "9.0.5,31579"
-  sha256 "914b89b83cfd42cd246e00327194c7b3d993694a4a7be8d6fd94da3059a50ac8"
+  version "10.0.6,31900"
+  sha256 "1aa95db4c97d57e63fb03a3244a9bcc2c5a82ee41552a972d65f21dd5dd218ae"
 
-  url "https://www.telestream.net/download-files/screenflow/#{version.before_comma.major_minor.dots_to_hyphens}/ScreenFlow-#{version.before_comma}.dmg"
+  url "https://www.telestream.net/download-files/screenflow/#{version.csv.first.major_minor.dots_to_hyphens}/ScreenFlow-#{version.csv.first}.dmg"
   name "ScreenFlow"
   desc "Screen recording and video editing software"
   homepage "https://www.telestream.net/screenflow/"
@@ -13,7 +13,16 @@ cask "screenflow" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :catalina"
 
   app "ScreenFlow.app"
+
+  zap trash: [
+    "~/Library/Application Support/ScreenFlow",
+    "~/Library/Caches/net.telestream.screenflow9",
+    "~/Library/Cookies/net.telestream.screenflow9.binarycookies",
+    "~/Library/Preferences/WSG985FR47.net.telestream.screenflowhelper.plist",
+    "~/Library/Preferences/net.telestream.screenflow.globallibrary.plist",
+    "~/Library/Preferences/net.telestream.screenflow9.plist",
+  ]
 end

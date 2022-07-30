@@ -1,8 +1,8 @@
 cask "agenda" do
-  version "11.2.2,161"
-  sha256 "9878a33bf85668b5909df50006a05510e5a2787832c2a8d6981d0e7773d4724c"
+  version "14.1.1,231"
+  sha256 "3ad2cc6e46ad53dace68816a04a7bcc992aa9b2f6a51b050b07d58d955ec2ac8"
 
-  url "https://downloads.agenda.com/Agenda_#{version.before_comma}.zip"
+  url "https://downloads.agenda.com/Agenda_#{version.csv.first}.zip"
   name "Agenda"
   desc "Note taking application focusing on dates"
   homepage "https://agenda.com/"
@@ -15,4 +15,15 @@ cask "agenda" do
   depends_on macos: ">= :sierra"
 
   app "Agenda.app"
+
+  zap trash: [
+    "~/Library/Application Scripts/com.momenta.agenda.macos",
+    "~/Library/Application Scripts/com.momenta.agenda.macos.extension-sharing",
+    "~/Library/Application Scripts/com.momenta.agenda.macos.extension-widget",
+    "~/Library/Containers/com.momenta.agenda.macos",
+    "~/Library/Containers/com.momenta.agenda.macos.extension-sharing",
+    "~/Library/Containers/com.momenta.agenda.macos.extension-widget",
+    "~/Library/Group Containers/WRBK2Z2EG7.group.com.momenta.agenda.macos",
+    "~/Library/Preferences/com.momenta.agenda.macos.plist",
+  ]
 end

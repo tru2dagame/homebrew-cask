@@ -1,8 +1,8 @@
 cask "displays" do
-  version "1.9.7,108"
-  sha256 "15cbc743f29f241d87b6c79dc53a2e3c3b1294ede1e00dfc3723a7db7a9c4088"
+  version "1.9.10,120"
+  sha256 "3e40e462fd9bf1a881c996cbc5695f1f1772dafeab8726a52be94d4410caf139"
 
-  url "https://www.jibapps.com/ressources/displays/files/Displays.#{version.before_comma}.zip"
+  url "https://www.jibapps.com/ressources/displays/files/Displays.#{version.csv.first}.zip"
   name "Displays"
   desc "Monitor resolution and settings manager"
   homepage "https://www.jibapps.com/apps/displays/"

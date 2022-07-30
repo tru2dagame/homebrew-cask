@@ -1,14 +1,22 @@
 cask "onionshare" do
-  version "2.2"
-  sha256 "c9fc5a3634ac4a8d8d27e20f6d7c899962cd25c3d40522a544c9a1835ee66651"
+  version "2.5"
+  sha256 "3f66a1298720862545e7c13e80f73f65b8110eff824b62a8595f74091520e63b"
 
-  url "https://onionshare.org/dist/#{version}/OnionShare-#{version}.pkg"
-  appcast "https://github.com/micahflee/onionshare/releases.atom"
+  url "https://onionshare.org/dist/#{version}/OnionShare-#{version}.dmg"
   name "OnionShare"
-  desc "Securely and anonymously send and receive files"
+  desc "Securely and anonymously share files, host websites, and chat with friends"
   homepage "https://onionshare.org/"
 
-  pkg "OnionShare-#{version}.pkg"
+  livecheck do
+    url :homepage
+    regex(/href=.*?OnionShare[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
+  end
 
-  uninstall pkgutil: "com.micahflee.onionshare"
+  app "OnionShare.app"
+
+  zap trash: [
+    "~/Library/Application Support/OnionShare",
+    "~/Library/Preferences/org.onionshare.onionshare.plist",
+    "~/Library/Saved Application State/org.onionshare.onionshare.savedState",
+  ]
 end
